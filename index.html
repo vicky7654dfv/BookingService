@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly | Elite Booking Services</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <script>
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+        // Simulated navigation function replacing anchor tags & triggering loader
+        function navigate(path) {
+            if (path === 'javascript:void(0)') return;
+            const loader = document.getElementById('page-loader');
+            loader.style.display = 'flex';
+            setTimeout(() => { loader.style.opacity = '1'; }, 10);
+            setTimeout(() => { window.location.assign(path); }, 400);
+        }
+    </script>
+
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="./assets/Home1/Header/logo.webp" alt="Stackly Logo" class="loader-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+            <p>Loading Experience...</p>
+        </div>
+    </div>
+
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="top-bar-left">
+                <span><i class="fa-solid fa-clock"></i> Available 24*7</span>
+                <span><i class="fa-solid fa-envelope"></i> support@stackly.com</span>
+                <span><i class="fa-solid fa-phone"></i> +1 800 555 0199</span>
+            </div>
+            <div class="top-bar-right">
+                <span id="live-time"></span>
+            </div>
+        </div>
+    </div>
+
+    <header class="headerWrap" id="main-header">
+        <div class="imgWrap">
+            <a href="index.html">
+                <img src="./assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+            </a>
+        </div>
+        
+        <div class="hamburger" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav class="linksWrap" id="nav-links">
+            <div class="topCloseBtn" id="close-btn">
+                <i class="fa-solid fa-times"></i>
+            </div>
+            <ul>
+                <li class="dropdown" id="home-dropdown">
+                    <div class="dropdownHeader">
+                        <a href="javascript:void(0)" class="homePageLink" id="home-nav-link">Home</a>
+                        <button class="dropdownToggle" aria-label="Toggle dropdown" id="dropdown-toggle-btn">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdownMenu" id="dropdown-menu">
+                        <li><a href="index.html">Home 1</a></li>
+                        <li><a href="./pages/home2.html">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="./pages/about.html">About Us</a></li>
+                <li><a href="./pages/dashboard.html">DashBoard</a></li>
+                <li><a href="./pages/services.html">Services</a></li>
+                <li><a href="./pages/blog.html">Blog</a></li>
+                <li><a href="./pages/contact.html">Contact</a></li>
+                <li><a href="./pages/signup.html">Sign Up</a></li>
+                <li><a href="./pages/login.html">Login</a></li>
+                <li class="theme-toggle-li">
+                    <button id="theme-toggle-btn" class="nav-link-btn" aria-label="Toggle Theme">
+                        <span id="theme-text">Light Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="menuOverlay" id="menu-overlay" onclick="closeMenu()"></div>
+    </header>
+
+    <main>
+        <section class="booking-hero slanted-end">
+            <div class="bg-layer">
+                <img src="./assets/Home1/Hero/heroBg.webp" alt="City Driving" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop'">
+                <div class="overlay-dark"></div>
+            </div>
+            <div class="container hero-layout">
+                <div class="hero-text-area fade-in">
+                    <h1>Command Your<br>Journey.</h1>
+                    <p>Elevate every commute. Whether it's a quick city hop, a dedicated rental, or a scenic outstation trip, Stackly provides unmatched precision and elite comfort.</p>
+                </div>
+                
+                <div class="booking-widget fade-in">
+                    <div class="booking-tabs">
+                        <button class="tab-btn active" data-tab="daily">Daily</button>
+                        <button class="tab-btn" data-tab="rental">Rental</button>
+                        <button class="tab-btn" data-tab="outstation">Outstation</button>
+                    </div>
+                    
+                    <form id="stackly-booking-form" name="bookingForm" class="booking-form" novalidate>
+                        <div class="input-group">
+                            <label for="sourceLoc">Pickup Location</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <input type="text" id="sourceLoc" name="source" placeholder="Enter pickup location" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="destLoc">Drop Destination</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-location-arrow"></i>
+                                <input type="text" id="destLoc" name="destination" placeholder="Enter drop location" required>
+                            </div>
+                        </div>
+                        <div class="input-group row-flex">
+                            <div class="half-width">
+                                <label for="vehicleType">Vehicle Type</label>
+                                <select id="vehicleType" name="vehicle" required>
+                                    <option value="cab">Elite Cab</option>
+                                    <option value="auto">City Auto</option>
+                                    <option value="bike">Swift Bike</option>
+                                </select>
+                            </div>
+                            <div class="half-width" id="dynamic-field-container">
+                                <label for="dynamicInput" id="dynamicLabel">Pickup Time</label>
+                                <input type="time" id="dynamicInput" name="dynamicField" required>
+                            </div>
+                        </div>
+                        <span id="form-error" class="form-error-msg"></span>
+                        <button type="submit" class="btn btn-glow btn-shine full-width book-btn">Confirm Booking</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section slanted-end">
+            <div class="container">
+                <div class="section-header center-aligned fade-in">
+                    <h2>The Stackly Advantage</h2>
+                    <p class="section-subtitle">We don't just move you from point A to point B. We redefine the space in between with comprehensive, elite-level amenities designed for modern travelers.</p>
+                </div>
+                <div class="feature-grid staggered-grid">
+                    <div class="feature-card fade-in">
+                        <div class="img-box">
+                            <img src="./assets/Home1/Grid/grid1.webp" alt="Insurance Coverage" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="card-content">
+                            <h3><i class="fa-solid fa-shield-halved"></i> Comprehensive Ride Insurance</h3>
+                            <p>Every trip is fully insured, guaranteeing complete peace of mind from pickup to destination. Our policies cover personal belongings and health, ensuring absolute safety.</p>
+                            <ul class="card-list">
+                                <li>Zero deductible coverage</li>
+                                <li>Instant claim processing</li>
+                            </ul>
+                            <button onclick="navigate('./pages/error.html')" class="btn-text">Explore Protection <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="feature-card offset-card fade-in" style="transition-delay: 0.1s;">
+                        <div class="img-box">
+                            <img src="./assets/Home1/Grid/grid2.webp" alt="In-ride WiFi" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="card-content">
+                            <h3><i class="fa-solid fa-wifi"></i> Gigabit In-Ride Wi-Fi</h3>
+                            <p>Turn your commute into a mobile office or an entertainment hub. Enjoy complimentary, uninterrupted high-speed internet in all our elite cabs.</p>
+                            <ul class="card-list">
+                                <li>Secure encrypted networks</li>
+                                <li>Unlimited bandwidth</li>
+                            </ul>
+                            <button onclick="navigate('./pages/error.html')" class="btn-text">View Tech Specs <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in" style="transition-delay: 0.2s;">
+                        <div class="img-box">
+                            <img src="./assets/Home1/Grid/grid3.webp" alt="Flexible Payments" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="card-content">
+                            <h3><i class="fa-solid fa-wallet"></i> Book Now, Pay Later</h3>
+                            <p>Seamlessly link your credit profile to ride instantly. Accumulate your travel expenses and clear your dues conveniently at the end of the month.</p>
+                            <ul class="card-list">
+                                <li>0% interest on standard lines</li>
+                                <li>Automated digital invoices</li>
+                            </ul>
+                            <button onclick="navigate('./pages/error.html')" class="btn-text">Finance Options <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="instructions-section slanted-end">
+            <div class="container">
+                <div class="split-layout">
+                    <div class="instruction-block rider-block fade-in">
+                        <div class="instruction-img">
+                            <img src="./assets/Home1/Side/side1.webp" alt="Happy Rider" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80'">
+                            <div class="overlay-dark-03"></div>
+                            <h2>For Riders</h2>
+                        </div>
+                        <div class="instruction-text">
+                            <h3>Master Your Commute</h3>
+                            <p>Enjoy absolute control over your travel environment. Set your pickup time, dictate the ambient cabin temperature, select your preferred route, and even choose the music playing before you step inside.</p>
+                            <div class="stats-row mini-stats">
+                                <div><span class="highlight-cyan">10M+</span><br>Rides</div>
+                                <div><span class="highlight-cyan">4.9/5</span><br>Avg Rating</div>
+                            </div>
+                            <button onclick="navigate('./pages/error.html')" class="btn btn-outline btn-shine">Rider Guidelines</button>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-block driver-block fade-in">
+                        <div class="instruction-img">
+                            <img src="./assets/Home1/Side/side2.webp" alt="Professional Driver" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80'">
+                            <div class="overlay-dark-03"></div>
+                            <h2>For Drivers</h2>
+                        </div>
+                        <div class="instruction-text">
+                            <h3>Join The Elite Fleet</h3>
+                            <p>Transform your vehicle into a premium asset. Earn top-tier market rates, gain access to exclusive driver lounges across the city, and manage your flexible schedule effortlessly with our advanced partner tools.</p>
+                            <div class="stats-row mini-stats">
+                                <div><span class="highlight-cyan">Top 1%</span><br>Payouts</div>
+                                <div><span class="highlight-cyan">24/7</span><br>Support</div>
+                            </div>
+                            <button onclick="navigate('./pages/error.html')" class="btn btn-glow btn-shine">Become a Partner</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="preference-section slanted-end">
+            <div class="container feature-container swap-layout">
+                <div class="feature-right fade-in">
+                    <a href="./pages/error.html" style="text-decoration:none; display:block;">
+                        <div class="video-container hover-glow" style="margin-right: -40px;">
+                            <div class="overlay-dark" style="z-index: 1;"></div>
+                            <video src="./assets/Home1/bgVideo.mp4" autoplay muted loop playsinline loading="lazy" onerror="this.src='https://www.w3schools.com/html/mov_bbb.mp4'" style="position:relative; z-index:0; filter: blur(1px);"></video>
+                            <div class="media-caption" style="z-index: 2;">Safety First Protocol <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></div>
+                            <div class="play-btn-overlay">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="feature-left fade-in">
+                    <h1>Your Ride.<br><span class="accent-color">Your Choice.</span></h1>
+                    <p class="elite-para">We believe in empowering your comfort and safety. Stackly’s pioneering platform allows you to explicitly choose between male or female drivers, ensuring you always feel secure, respected, and relaxed during your journey.</p>
+                    <ul class="feature-list big-list">
+                        <li>
+                            <div class="icon-wrap"><i class="fa-solid fa-user-shield"></i></div>
+                            <div>
+                                <strong>Vetted & Background Checked</strong>
+                                <p>Rigorous multi-stage security clearance.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-wrap"><i class="fa-solid fa-star"></i></div>
+                            <div>
+                                <strong>Highly Rated Professionals</strong>
+                                <p>Only drivers maintaining a 4.8+ rating.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-wrap"><i class="fa-solid fa-satellite-dish"></i></div>
+                            <div>
+                                <strong>24/7 SOS In-App Support</strong>
+                                <p>Live GPS tracking and immediate response teams.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="btn-group">
+                        <button onclick="navigate('./pages/error.html')" class="btn btn-glow btn-shine">Safety Features</button>
+                        <button onclick="navigate('./pages/error.html')" class="btn btn-outline btn-shine">Read Our Policy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="apps-section slanted-end">
+            <div class="container center-aligned fade-in">
+                <h2>Stackly Everywhere</h2>
+                <p class="section-subtitle">Book an elite ride in seconds. Our state-of-the-art platform is synchronized across all major operating systems, ensuring your preferences and payment methods are always at your fingertips.</p>
+                <div class="app-grid">
+                    <button onclick="navigate('./pages/error.html')" class="app-card playstore">
+                        <div class="icon-circle"><i class="fa-brands fa-google-play"></i></div>
+                        <div class="app-text">
+                            <span>Get it on</span>
+                            <h4>Google Play</h4>
+                        </div>
+                    </button>
+                    <button onclick="navigate('./pages/error.html')" class="app-card appstore">
+                        <div class="icon-circle"><i class="fa-brands fa-apple"></i></div>
+                        <div class="app-text">
+                            <span>Download on the</span>
+                            <h4>App Store</h4>
+                        </div>
+                    </button>
+                    <button onclick="navigate('./pages/error.html')" class="app-card webapp" style="box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);">
+                        <div class="icon-circle"><i class="fa-brands fa-windows"></i></div>
+                        <div class="app-text">
+                            <span>Get it on</span>
+                            <h4>Windows</h4>
+                        </div>
+                    </button>
+                    <button onclick="navigate('./pages/error.html')" class="app-card macapp" style="box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);">
+                        <div class="icon-circle"><i class="fa-brands fa-apple"></i></div>
+                        <div class="app-text">
+                            <span>Get it on</span>
+                            <h4>Mac OS</h4>
+                        </div>
+                    </button>
+                    <button onclick="navigate('./pages/error.html')" class="app-card linuxapp" style="box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);">
+                        <div class="icon-circle"><i class="fa-brands fa-linux"></i></div>
+                        <div class="app-text">
+                            <span>Get it on</span>
+                            <h4>Linux</h4>
+                        </div>
+                    </button>
+                    <button onclick="navigate('./pages/error.html')" class="app-card webapp" style="box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);">
+                        <div class="icon-circle"><i class="fa-solid fa-globe"></i></div>
+                        <div class="app-text">
+                            <span>Use our</span>
+                            <h4>Web App</h4>
+                        </div>
+                    </button>
+                </div>
+                <div style="margin-top: 60px;">
+                    <h3 style="margin-bottom: 25px;">Ready to Experience Elite?</h3>
+                    <button onclick="navigate('./pages/signup.html')" class="btn btn-glow btn-shine">Create an Account</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footerWrap container">
+            <div class="box">
+                <div class="logoContainer">
+                    <img src="./assets/Home1/Header/logo.webp" class="footer-logo site-logo" alt="Stackly Logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+                </div>
+                <p class="footer-desc">
+                    Defining the future of elite booking and commute. Precision, safety, and unparalleled expertise. Driven by innovation, we deliver seamless journeys built on trust, performance, and excellence.
+                </p>
+            </div>
+
+            <div class="box">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('./pages/about.html')" class="nav-link-btn">About Us</button></li>
+                    <li><button onclick="navigate('./pages/services.html')" class="nav-link-btn">Dashboard</button></li>
+                    <li><button onclick="navigate('./pages/signup.html')" class="nav-link-btn">Sign Up</button></li>
+                    <li><button onclick="navigate('./pages/login.html')" class="nav-link-btn">Login</button></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('./pages/error.html')" class="nav-link-btn">Help Center</button></li>
+                    <li><button onclick="navigate('./pages/error.html')" class="nav-link-btn">Safety</button></li>
+                    <li><button onclick="navigate('./pages/error.html')" class="nav-link-btn">Terms & Conditions</button></li>
+                    <li><button onclick="navigate('./pages/error.html')" class="nav-link-btn">Finance</button></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Contact</h4>
+                <ul class="contactInfo">
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 1:</strong> Downtown</li>
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 2:</strong> Beverly Hills</li>
+                    <li><i class="fa-solid fa-phone"></i> +1 800 555 0199</li>
+                    <li><i class="fa-solid fa-envelope"></i> vip@stackly.auto</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Newsletter</h4>
+                <form id="footer-newsletter-form" name="newsletterForm" class="subscribe-form" novalidate>
+                    <input type="email" id="newsletter-email" name="email" placeholder="Your Email" autocomplete="email" required>
+                    <span id="newsletter-error" style="color: var(--error-color); font-size: 0.8rem; display: block; margin-top: -5px; min-height: 15px;"></span>
+                    <button type="submit" class="btn btn-glow btn-shine full-width">Subscribe</button>
+                </form>
+                <div class="media">
+                    <button onclick="navigate('./pages/error.html')" class="socialLink" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+                    <button onclick="navigate('./pages/error.html')" class="socialLink" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></button>
+                    <button onclick="navigate('./pages/error.html')" class="socialLink" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                    <button onclick="navigate('./pages/error.html')" class="socialLink" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sub-footer">
+        <div class="container sub-footer-content">
+            <p>&copy; 2026 Stackly. All rights reserved.</p>
+            <div class="mini-app-links">
+                <button onclick="navigate('./pages/error.html')" class="mini-btn"><i class="fa-brands fa-google-play"></i> PlayStore</button>
+                <button onclick="navigate('./pages/error.html')" class="mini-btn"><i class="fa-brands fa-apple"></i> AppStore</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="scroll-up-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script>
+        // Page Loader on Load & PageShow
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 100);
+        });
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                const loader = document.getElementById('page-loader');
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 100);
+            }
+        });
+
+        // Live Time Logic
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('live-time').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Hamburger Menu & Dropdown
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const navLinks = document.getElementById('nav-links');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const dropdownHeader = document.querySelector('.dropdownHeader');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const dropdownIcon = document.querySelector('.dropdownToggle i');
+        const body = document.body;
+
+        function closeMenu() {
+            navLinks.classList.remove('showMenu');
+            menuOverlay.style.display = 'none';
+            body.classList.remove('menu-open'); 
+            dropdownMenu.classList.remove('showDropdown');
+            if (dropdownIcon) {
+                dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.add('showMenu');
+            menuOverlay.style.display = 'block';
+            body.classList.add('menu-open'); 
+        });
+        closeBtn.addEventListener('click', closeMenu);
+
+        // Close menu if clicked outside the nav menu block (even if not exactly on overlay)
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('showMenu') && !navLinks.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Toggle dropdown from entire header block instead of just chevron, if in mobile view
+        dropdownHeader.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('showDropdown');
+            
+            // Toggle icon visual
+            if (dropdownMenu.classList.contains('showDropdown')) {
+                dropdownIcon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+
+        // Theme Toggle Logic (Text Base)
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeText = document.getElementById('theme-text');
+
+        function setThemeState(isLight) {
+            if (isLight) {
+                document.body.classList.add('light-theme');
+                themeText.innerText = 'Dark Mode';
+                localStorage.setItem('stackly-theme', 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                themeText.innerText = 'Light Mode';
+                localStorage.setItem('stackly-theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            setThemeState(true);
+        }
+        
+        themeToggleBtn.addEventListener('click', () => {
+            const isLight = !document.body.classList.contains('light-theme');
+            setThemeState(isLight);
+        });
+
+        // Sticky Header & Scroll Up Button
+        const header = document.getElementById('main-header');
+        const scrollBtn = document.getElementById('scroll-up-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Booking Form Tabs Logic (Dynamic Fields)
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const dynamicLabel = document.getElementById('dynamicLabel');
+        const dynamicInput = document.getElementById('dynamicInput');
+
+        const tabConfig = {
+            'daily': { label: 'Pickup Time', type: 'time', placeholder: '' },
+            'rental': { label: 'Rental Package', type: 'text', placeholder: 'e.g., 4 Hrs / 40 Kms' },
+            'outstation': { label: 'Return Date', type: 'date', placeholder: '' }
+        };
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const tabId = btn.getAttribute('data-tab');
+                const config = tabConfig[tabId];
+                
+                dynamicInput.style.opacity = '0';
+                dynamicLabel.style.opacity = '0';
+                
+                setTimeout(() => {
+                    dynamicLabel.innerText = config.label;
+                    dynamicInput.type = config.type;
+                    dynamicInput.placeholder = config.placeholder;
+                    dynamicInput.value = ''; 
+                    
+                    dynamicInput.style.opacity = '1';
+                    dynamicLabel.style.opacity = '1';
+                }, 200);
+            });
+        });
+
+        // Booking Form Submit Validation
+        const bookingForm = document.getElementById('stackly-booking-form');
+        const formError = document.getElementById('form-error');
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formError.innerText = '';
+            
+            let isValid = true;
+            const inputs = bookingForm.querySelectorAll('input[required], select[required]');
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = 'var(--error-color)';
+                } else {
+                    input.style.borderColor = 'var(--border-light)';
+                }
+            });
+
+            if (isValid) {
+                navigate('./pages/error.html');
+            } else {
+                formError.innerText = 'Please fill out all required fields appropriately.';
+            }
+        });
+
+        bookingForm.addEventListener('input', (e) => {
+            if(e.target.required && e.target.value.trim() !== '') {
+                e.target.style.borderColor = 'var(--border-light)';
+                formError.innerText = '';
+            }
+        });
+
+        // Newsletter Submit Logic
+        const footerForm = document.getElementById('footer-newsletter-form');
+        const newsletterError = document.getElementById('newsletter-error');
+        const newsletterEmail = document.getElementById('newsletter-email');
+
+        footerForm.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            newsletterError.innerText = '';
+            if (!newsletterEmail.value.trim() || !/\S+@\S+\.\S+/.test(newsletterEmail.value)) {
+                newsletterError.innerText = 'Valid email is required';
+                newsletterEmail.style.borderColor = 'var(--error-color)';
+            } else {
+                navigate('./pages/error.html');
+            }
+        });
+
+        // Fade in Animation Observer
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElems.forEach(elem => fadeInObserver.observe(elem));
+    </script>
+</body>
+</html>
