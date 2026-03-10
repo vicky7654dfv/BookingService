@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stackly | Elite Job Portal Signup</title>
+    <title>Stackly | Elite Ride Booking Signup</title>
     <!-- Same Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
     <!-- Fonts and Icons -->
@@ -31,8 +31,8 @@
 
     <!-- Page Main Header -->
     <div class="page-header fade-in">
-        <h1>Join the Elite Network</h1>
-        <p>Unlock exclusive job opportunities and elevate your professional journey with Stackly.</p>
+        <h1>Join the Elite Fleet</h1>
+        <p>Sign up to ride in luxury or drive with the most premium booking ecosystem.</p>
     </div>
 
     <!-- Signup Split Layout -->
@@ -49,8 +49,8 @@
                 <a href="../index.html">
                     <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
                 </a>
-                <h1>Elevate Your Career</h1>
-                <p>Join the elite network of professionals. Build your personalized resume dashboard, connect with top-tier global companies, and secure your future with an ecosystem built for scaling success.</p>
+                <h1>Experience Premium Commute</h1>
+                <p>Whether you're looking for a luxury ride across the city or seeking to become a premier driving partner, Stackly provides an unparalleled ecosystem built on safety, comfort, and elite performance.</p>
             </div>
         </div>
 
@@ -58,7 +58,7 @@
         <div class="right-col fade-in">
             <div class="form-header">
                 <h1>Create Account</h1>
-                <p>Register as a candidate in the Stackly Job Portal.</p>
+                <p>Register as a Rider or Driver Partner with Stackly.</p>
             </div>
             
             <form id="signupForm" action="./error.html" method="get" onsubmit="return validateForm()">
@@ -91,26 +91,26 @@
                         </div>
                     </div>
 
-                    <!-- Resume Upload (PDF/Docx) -->
+                    <!-- Document Upload (PDF/Docx) -->
                     <div class="form-group full-width">
-                        <label for="resume">Upload Resume (PDF, DOCX)</label>
+                        <label for="document">Upload ID Proof / Driving License (PDF, DOCX)</label>
                         <div class="input-wrap">
                             <i class="fa-solid fa-file-arrow-up"></i>
-                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                            <input type="file" id="document" name="document" accept=".pdf,.doc,.docx" required>
                         </div>
                     </div>
 
-                    <!-- Experience Status -->
+                    <!-- Account Type -->
                     <fieldset class="form-group full-width" style="border: none; padding: 0; margin: 0;">
-                        <legend style="font-size: 0.85rem; color: var(--text-main); font-weight: 500; margin-bottom: 8px;">Experience Level</legend>
+                        <legend style="font-size: 0.85rem; color: var(--text-main); font-weight: 500; margin-bottom: 8px;">Select Account Type</legend>
                         <div class="radio-group" style="padding-top: 0;">
                             <div class="radio-item">
-                                <input type="radio" id="fresher" name="experience" value="fresher" required>
-                                <label for="fresher">Fresher</label>
+                                <input type="radio" id="rider" name="account_type" value="rider" required>
+                                <label for="rider">Rider</label>
                             </div>
                             <div class="radio-item">
-                                <input type="radio" id="experienced" name="experience" value="experienced" required>
-                                <label for="experienced">Experienced</label>
+                                <input type="radio" id="driver" name="account_type" value="driver" required>
+                                <label for="driver">Driver Partner</label>
                             </div>
                         </div>
                     </fieldset>
