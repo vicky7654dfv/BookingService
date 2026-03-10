@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly | Elite Job Portal Login</title>
+    <!-- Same Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Link specific css to avoid global overwrite issues -->
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    
+    <!-- Background for page is configured in CSS to match theme -->
+
+    <!-- Top HUD Controls -->
+    <div class="top-hud">
+        <a href="../index.html" class="return-btn">
+            <i class="fa-solid fa-arrow-left"></i> <span>Return Home</span>
+        </a>
+        <button class="theme-btn" id="login-theme-toggle" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i> <span id="theme-text">Light Mode</span>
+        </button>
+    </div>
+
+    <!-- Page Main Header -->
+    <div class="page-header fade-in">
+        <h1>Welcome Back</h1>
+        <p>Access your elite dashboard and continue your professional journey with Stackly.</p>
+    </div>
+
+    <!-- Login Split Layout -->
+    <div class="split-container">
+        
+        <!-- Left Banner -->
+        <div class="left-col fade-in">
+            <video class="video-bg" autoplay muted loop playsinline>
+                <source src="../assets/SignUp/signupBg.mp4" type="video/mp4">
+            </video>
+            <div class="overlay-dark"></div>
+            
+            <div class="left-content" style="position: relative; z-index: 2;">
+                <a href="../index.html">
+                    <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+                </a>
+                <h1>Empower Your Drive</h1>
+                <p>Login to manage your bookings, update your professional portfolio, and stay connected with the global elite automotive network.</p>
+            </div>
+        </div>
+
+        <!-- Right Form -->
+        <div class="right-col fade-in">
+            <div class="form-header">
+                <h1>Log In</h1>
+                <p>Enter your credentials to access your account.</p>
+            </div>
+            
+            <form id="loginForm" action="./error.html" method="get" onsubmit="return validateForm()">
+                <div class="form-grid">
+                    
+                    <!-- Name -->
+                    <div class="form-group full-width">
+                        <label for="fullname">Full Name</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="fullname" name="fullname" autocomplete="name" pattern="^[A-Za-z\s]+$" title="Only alphabetical characters and spaces are allowed" placeholder="John Doe" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group full-width">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" name="email" autocomplete="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group full-width">
+                        <label for="phone">Phone Number</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="\d{10}" maxlength="10" title="Must be exactly 10 digits" placeholder="9876543210" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                    </div>
+
+                    <!-- Password Group -->
+                    <div class="form-group full-width">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <label for="password">Password</label>
+                            <a href="./error.html" class="forgot-link">Forgot Password?</a>
+                        </div>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required>
+                            <i class="fa-solid fa-eye toggle-password" data-target="password"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-register">Log In</button>
+                
+                <div class="login-link">
+                    Don't have an account? <a href="./signup.html">Sign up here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Logics -->
+    <script>
+        function validateForm() {
+            // Native HTML5 validation handles core checks
+            return true;
+        }
+
+        // Password Visibility Toggle
+        document.querySelectorAll('.toggle-password').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                
+                // Toggle icon
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+
+        // Independent Theme Toggle for Login
+        const loginThemeBtn = document.getElementById('login-theme-toggle');
+        const themeText = document.getElementById('theme-text');
+        const themeIcon = loginThemeBtn.querySelector('i');
+
+        function setLoginTheme(isLight) {
+            if (isLight) {
+                document.body.classList.add('light-theme');
+                themeText.innerText = 'Dark Mode';
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('stackly-theme', 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                themeText.innerText = 'Light Mode';
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('stackly-theme', 'dark');
+            }
+        }
+
+        // Initial Load
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            setLoginTheme(true);
+        }
+
+        // Click Handler
+        loginThemeBtn.addEventListener('click', () => {
+            const isLight = !document.body.classList.contains('light-theme');
+            setLoginTheme(isLight);
+        });
+    </script>
+</body>
+</html>

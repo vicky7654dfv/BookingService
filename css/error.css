@@ -1,0 +1,195 @@
+:root {
+    --primary-color: #06B6D4;
+    --primary-glow: rgba(6, 182, 212, 0.4);
+    --bg-dark: #0a0a0c;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-main: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.7);
+    --font-family: 'Outfit', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+.light-theme {
+    --bg-dark: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-dim: #475569;
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: var(--font-family);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Base CSS */
+.error-wrapper {
+    width: 100%;
+    max-width: 800px; /* Reduced since image is removed */
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.error-wrapper.fade-in {
+    animation: fadeIn 1s forwards ease-out;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-container {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 2rem;
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Centered content */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-box {
+    width: 100%;
+}
+
+.error-code {
+    font-size: 10rem; /* Larger code as center piece */
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px var(--primary-glow);
+}
+
+.error-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.error-description {
+    font-size: 1.25rem;
+    color: var(--text-dim);
+    margin-bottom: 3.5rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    padding: 1.25rem 3rem;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px var(--primary-glow);
+    background: #08d4f9;
+}
+
+/* 1024px media query */
+@media (max-width: 1024px) {
+    .error-container {
+        padding: 5rem 3rem;
+    }
+    .error-code {
+        font-size: 8rem;
+    }
+    .error-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* 768px media query */
+@media (max-width: 768px) {
+    .error-container {
+        padding: 4rem 2rem;
+    }
+    .error-code {
+        font-size: 7rem;
+    }
+    .error-title {
+        font-size: 2rem;
+    }
+    .error-description {
+        font-size: 1.1rem;
+    }
+}
+
+/* 425.6px media query */
+@media (max-width: 425.6px) {
+    .error-container {
+        padding: 3rem 1.5rem;
+        border-radius: 1.5rem;
+    }
+    .error-code {
+        font-size: 5rem;
+    }
+    .error-title {
+        font-size: 1.75rem;
+    }
+    .error-description {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+    }
+    .btn-primary {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 2rem;
+    }
+}
+
+/* 375.2px media query */
+@media (max-width: 375.2px) {
+    .error-wrapper {
+        padding: 1rem;
+    }
+    .error-container {
+        padding: 2.5rem 1rem;
+    }
+    .error-code {
+        font-size: 4rem;
+    }
+    .error-title {
+        font-size: 1.5rem;
+    }
+}

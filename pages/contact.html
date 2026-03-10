@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Stackly Elite Booking</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <script>
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+        function navigate(path) {
+            if (path === 'javascript:void(0)') return;
+            const loader = document.getElementById('page-loader');
+            loader.style.display = 'flex';
+            setTimeout(() => { loader.style.opacity = '1'; }, 10);
+            setTimeout(() => { window.location.assign(path); }, 400);
+        }
+    </script>
+
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="loader-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+            <p>Loading Experience...</p>
+        </div>
+    </div>
+
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="top-bar-left">
+                <span><i class="fa-solid fa-clock"></i> Available 24*7</span>
+                <span><i class="fa-solid fa-envelope"></i> support@stackly.com</span>
+                <span><i class="fa-solid fa-phone"></i> +1 800 555 0199</span>
+            </div>
+            <div class="top-bar-right">
+                <span id="live-time"></span>
+            </div>
+        </div>
+    </div>
+
+    <header class="headerWrap" id="main-header">
+        <div class="imgWrap">
+            <a href="../index.html">
+                <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+            </a>
+        </div>
+        
+        <div class="hamburger" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav class="linksWrap" id="nav-links">
+            <div class="topCloseBtn" id="close-btn">
+                <i class="fa-solid fa-times"></i>
+            </div>
+            <ul>
+                <li class="dropdown" id="home-dropdown">
+                    <div class="dropdownHeader">
+                        <a href="javascript:void(0)" class="homePageLink" id="home-nav-link">Home</a>
+                        <button class="dropdownToggle" aria-label="Toggle dropdown" id="dropdown-toggle-btn">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdownMenu" id="dropdown-menu">
+                        <li><a href="../index.html">Home 1</a></li>
+                        <li><a href="home2.html">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="dashboard.html">DashBoard</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li class="theme-toggle-li">
+                    <button id="theme-toggle-btn" class="nav-link-btn" aria-label="Toggle Theme">
+                        <span id="theme-text">Light Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="menuOverlay" id="menu-overlay" onclick="closeMenu()"></div>
+    </header>
+
+    <main>
+        <section class="contact-header fade-in">
+            <div class="container center-aligned">
+                <h1>Get in Touch</h1>
+                <p class="section-subtitle">Have a question or want to join our fleet? We're here to help you navigate your journey.</p>
+            </div>
+        </section>
+
+        <section class="contact-section fade-in">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Details & Social Media -->
+                    <div class="contact-info-card">
+                        <h3>Connect With Us</h3>
+                        <ul class="contact-details-list">
+                            <li>
+                                <div class="icon-circle"><i class="fa-solid fa-phone"></i></div>
+                                <div class="detail-text">
+                                    <strong>Phone Support</strong>
+                                    <span>+1 800 555 0199</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-circle"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="detail-text">
+                                    <strong>Email Address</strong>
+                                    <span>support@stackly.com</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="detail-text">
+                                    <strong>Branch Downtown</strong>
+                                    <span>123 Elite Square, Financial District</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-circle"><i class="fa-solid fa-building"></i></div>
+                                <div class="detail-text">
+                                    <strong>Branch Beverly Hills</strong>
+                                    <span>456 Luxury Ave, Beverly Hills</span>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="social-links-area">
+                            <h4>Follow Our Journey</h4>
+                            <div class="media">
+                                <button onclick="navigate('error.html')" class="socialLink" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+                                <button onclick="navigate('error.html')" class="socialLink" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></button>
+                                <button onclick="navigate('error.html')" class="socialLink" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                                <button onclick="navigate('error.html')" class="socialLink" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Map Section -->
+                        <div class="map-box">
+                            <a href="https://maps.app.goo.gl/dm4tG94KCNqimqKc7" target="_blank" class="map-link-overlay" aria-label="Open Stackly Location in Google Maps"></a>
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3907.1616097152896!2d78.1739798!3d11.682956599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babefef7fd970bb%3A0xe11aef1a71994f9!2sStackly!5e0!3m2!1sen!2sin!4v1773135529217!5m2!1sen!2sin" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Stackly Location">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-card">
+                        <h3>Send A Message</h3>
+                        <form id="contact-us-form" class="contact-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="userName">Full Name</label>
+                                    <input type="text" id="userName" name="name" placeholder="Enter your name" autocomplete="name" pattern="^[A-Za-z\s]+$" title="Only alphabetical characters and spaces are allowed" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userEmail">Email Address</label>
+                                    <input type="email" id="userEmail" name="email" placeholder="Enter your email" autocomplete="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="userSubject">Subject</label>
+                                <input type="text" id="userSubject" name="subject" placeholder="What is this about?" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="resumeUpload">Upload Resume (If applying)</label>
+                                <input type="file" id="resumeUpload" name="resume" class="file-input" accept=".pdf,.doc,.docx">
+                            </div>
+                            <div class="form-group">
+                                <label for="userMessage">Your Message</label>
+                                <textarea id="userMessage" name="message" placeholder="Type your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-glow btn-shine full-width">Send Message</button>
+                            <span id="form-feedback" class="form-error-msg"></span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footerWrap container">
+            <div class="box">
+                <div class="logoContainer">
+                    <img src="../assets/Home1/Header/logo.webp" class="footer-logo site-logo" alt="Stackly Logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+                </div>
+                <p class="footer-desc">
+                    Defining the future of elite booking and commute. Precision, safety, and unparalleled expertise. Driven by innovation, we deliver seamless journeys built on trust, performance, and excellence.
+                </p>
+            </div>
+
+            <div class="box">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('about.html')" class="nav-link-btn">About Us</button></li>
+                    <li><button onclick="navigate('services.html')" class="nav-link-btn">Dashboard</button></li>
+                    <li><button onclick="navigate('signup.html')" class="nav-link-btn">Sign Up</button></li>
+                    <li><button onclick="navigate('login.html')" class="nav-link-btn">Login</button></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Help Center</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Safety</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Terms & Conditions</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Finance</button></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Contact</h4>
+                <ul class="contactInfo">
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 1:</strong> Downtown</li>
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 2:</strong> Beverly Hills</li>
+                    <li><i class="fa-solid fa-phone"></i> +1 800 555 0199</li>
+                    <li><i class="fa-solid fa-envelope"></i> vip@stackly.auto</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Newsletter</h4>
+                <form id="footer-newsletter-form" name="newsletterForm" class="subscribe-form" novalidate>
+                    <input type="email" id="newsletter-email" name="email" placeholder="Your Email" autocomplete="email" required>
+                    <span id="newsletter-error" style="color: var(--error-color); font-size: 0.8rem; display: block; margin-top: -5px; min-height: 15px;"></span>
+                    <button type="submit" class="btn btn-glow btn-shine full-width">Subscribe</button>
+                </form>
+                <div class="media">
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sub-footer">
+        <div class="container sub-footer-content">
+            <p>&copy; 2026 Stackly. All rights reserved.</p>
+            <div class="mini-app-links">
+                <button onclick="navigate('error.html')" class="mini-btn"><i class="fa-brands fa-google-play"></i> PlayStore</button>
+                <button onclick="navigate('error.html')" class="mini-btn"><i class="fa-brands fa-apple"></i> AppStore</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="scroll-up-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script>
+        // Same scripts as index.html for consistency
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 100);
+        });
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                const loader = document.getElementById('page-loader');
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 100);
+            }
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const liveTime = document.getElementById('live-time');
+            if(liveTime) liveTime.innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const navLinks = document.getElementById('nav-links');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const dropdownHeader = document.querySelector('.dropdownHeader');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const dropdownIcon = document.querySelector('.dropdownToggle i');
+        const body = document.body;
+
+        function closeMenu() {
+            navLinks.classList.remove('showMenu');
+            menuOverlay.style.display = 'none';
+            body.classList.remove('menu-open'); 
+            dropdownMenu.classList.remove('showDropdown');
+            if (dropdownIcon) {
+                dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.add('showMenu');
+            menuOverlay.style.display = 'block';
+            body.classList.add('menu-open'); 
+        });
+        closeBtn.addEventListener('click', closeMenu);
+
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('showMenu') && !navLinks.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        dropdownHeader.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('showDropdown');
+            if (dropdownMenu.classList.contains('showDropdown')) {
+                dropdownIcon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeText = document.getElementById('theme-text');
+
+        function setThemeState(isLight) {
+            if (isLight) {
+                document.body.classList.add('light-theme');
+                themeText.innerText = 'Dark Mode';
+                localStorage.setItem('stackly-theme', 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                themeText.innerText = 'Light Mode';
+                localStorage.setItem('stackly-theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            setThemeState(true);
+        }
+        
+        themeToggleBtn.addEventListener('click', () => {
+            const isLight = !document.body.classList.contains('light-theme');
+            setThemeState(isLight);
+        });
+
+        const header = document.getElementById('main-header');
+        const scrollBtn = document.getElementById('scroll-up-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Contact Form Logic
+        const contactForm = document.getElementById('contact-us-form');
+        const formFeedback = document.getElementById('form-feedback');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formFeedback.innerText = '';
+            const emailInput = document.getElementById('userEmail');
+            const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+            
+            let isValid = true;
+            const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
+            
+            inputs.forEach(input => {
+                let valid = true;
+                if (!input.value.trim()) {
+                    valid = false;
+                } else if (input.type === 'email' && !emailRegex.test(input.value.trim())) {
+                    valid = false;
+                }
+                
+                if (!valid) {
+                    isValid = false;
+                    input.style.borderColor = 'var(--error-color)';
+                } else {
+                    input.style.borderColor = 'var(--border-light)';
+                }
+            });
+
+            if (isValid) {
+                formFeedback.style.color = 'var(--primary-color)';
+                formFeedback.innerText = 'Message sent successfully! We will get back to you soon.';
+                contactForm.reset();
+                setTimeout(() => { navigate('error.html'); }, 2000);
+            } else {
+                formFeedback.style.color = 'var(--error-color)';
+                formFeedback.innerText = 'Please fill out all required fields properly.';
+            }
+        });
+
+        const footerForm = document.getElementById('footer-newsletter-form');
+        const newsletterError = document.getElementById('newsletter-error');
+        const newsletterEmail = document.getElementById('newsletter-email');
+
+        footerForm.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            newsletterError.innerText = '';
+            if (!newsletterEmail.value.trim() || !/\S+@\S+\.\S+/.test(newsletterEmail.value)) {
+                newsletterError.innerText = 'Valid email is required';
+                newsletterEmail.style.borderColor = 'var(--error-color)';
+            } else {
+                navigate('error.html');
+            }
+        });
+
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElems.forEach(elem => fadeInObserver.observe(elem));
+    </script>
+</body>
+</html>

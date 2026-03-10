@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly | Elite Job Portal Signup</title>
+    <!-- Same Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Link specific css to avoid global overwrite issues -->
+    <link rel="stylesheet" href="../css/signup.css">
+</head>
+<body>
+    
+    <!-- Background for page is configured in CSS to match theme -->
+
+    <!-- Top HUD Controls -->
+    <div class="top-hud">
+        <a href="../index.html" class="return-btn">
+            <i class="fa-solid fa-arrow-left"></i> <span>Return Home</span>
+        </a>
+        <button class="theme-btn" id="signup-theme-toggle" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i> <span id="theme-text">Light Mode</span>
+        </button>
+    </div>
+
+    <!-- Page Main Header -->
+    <div class="page-header fade-in">
+        <h1>Join the Elite Network</h1>
+        <p>Unlock exclusive job opportunities and elevate your professional journey with Stackly.</p>
+    </div>
+
+    <!-- Signup Split Layout -->
+    <div class="split-container">
+        
+        <!-- Left Banner -->
+        <div class="left-col fade-in">
+            <video class="video-bg" autoplay muted loop playsinline>
+                <source src="../assets/SignUp/signupBg.mp4" type="video/mp4">
+            </video>
+            <div class="overlay-dark"></div>
+            
+            <div class="left-content" style="position: relative; z-index: 2;">
+                <a href="../index.html">
+                    <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+                </a>
+                <h1>Elevate Your Career</h1>
+                <p>Join the elite network of professionals. Build your personalized resume dashboard, connect with top-tier global companies, and secure your future with an ecosystem built for scaling success.</p>
+            </div>
+        </div>
+
+        <!-- Right Form -->
+        <div class="right-col fade-in">
+            <div class="form-header">
+                <h1>Create Account</h1>
+                <p>Register as a candidate in the Stackly Job Portal.</p>
+            </div>
+            
+            <form id="signupForm" action="./error.html" method="get" onsubmit="return validateForm()">
+                <div class="form-grid">
+                    
+                    <!-- Name -->
+                    <div class="form-group full-width">
+                        <label for="fullname">Full Name</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="fullname" name="fullname" autocomplete="name" pattern="^[A-Za-z\s]+$" title="Only alphabetical characters and spaces are allowed" placeholder="John Doe" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" name="email" autocomplete="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="\d{10}" maxlength="10" title="Must be exactly 10 digits" placeholder="9876543210" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                    </div>
+
+                    <!-- Resume Upload (PDF/Docx) -->
+                    <div class="form-group full-width">
+                        <label for="resume">Upload Resume (PDF, DOCX)</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-file-arrow-up"></i>
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                        </div>
+                    </div>
+
+                    <!-- Experience Status -->
+                    <fieldset class="form-group full-width" style="border: none; padding: 0; margin: 0;">
+                        <legend style="font-size: 0.85rem; color: var(--text-main); font-weight: 500; margin-bottom: 8px;">Experience Level</legend>
+                        <div class="radio-group" style="padding-top: 0;">
+                            <div class="radio-item">
+                                <input type="radio" id="fresher" name="experience" value="fresher" required>
+                                <label for="fresher">Fresher</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="experienced" name="experience" value="experienced" required>
+                                <label for="experienced">Experienced</label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Password Group -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="password" name="password" autocomplete="new-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$" title="Password must be at least 8 characters long, include a capital letter, a lowercase letter, a number, and a special character." placeholder="••••••••" required>
+                            <i class="fa-solid fa-eye toggle-password" data-target="password"></i>
+                        </div>
+                        <ul class="password-reqs" id="password-reqs">
+                            <li id="req-length"><i class="fa-solid fa-xmark"></i> At least 8 characters</li>
+                            <li id="req-upper"><i class="fa-solid fa-xmark"></i> 1 uppercase letter</li>
+                            <li id="req-lower"><i class="fa-solid fa-xmark"></i> 1 lowercase letter</li>
+                            <li id="req-num"><i class="fa-solid fa-xmark"></i> 1 number</li>
+                            <li id="req-spec"><i class="fa-solid fa-xmark"></i> 1 special character</li>
+                        </ul>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <div class="input-wrap">
+                            <i class="fa-solid fa-check-double"></i>
+                            <input type="password" id="confirm_password" name="confirm_password" autocomplete="new-password" placeholder="••••••••" required>
+                            <i class="fa-solid fa-eye toggle-password" data-target="confirm_password"></i>
+                        </div>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="form-group full-width check-item">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the Terms & Conditions and Privacy Policy.</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-register">Register</button>
+                
+                <div class="login-link">
+                    Already have an account? <a href="./login.html">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Logics -->
+    <script>
+        // 1. Password Confirmation Match Logic
+        const pass = document.getElementById('password');
+        const confPass = document.getElementById('confirm_password');
+
+        function checkPasswordMatch() {
+            if (pass.value !== confPass.value) {
+                confPass.setCustomValidity("Passwords do not match");
+            } else {
+                confPass.setCustomValidity('');
+            }
+        }
+        pass.addEventListener('input', checkPasswordMatch);
+        confPass.addEventListener('input', checkPasswordMatch);
+
+        // Password Requirements Logic
+        const reqs = {
+            length: { regex: /.{8,}/, el: document.getElementById('req-length') },
+            upper: { regex: /[A-Z]/, el: document.getElementById('req-upper') },
+            lower: { regex: /[a-z]/, el: document.getElementById('req-lower') },
+            num: { regex: /\d/, el: document.getElementById('req-num') },
+            spec: { regex: /[\W_]/, el: document.getElementById('req-spec') },
+        };
+
+        pass.addEventListener('input', () => {
+            const val = pass.value;
+            for (const key in reqs) {
+                const isValid = reqs[key].regex.test(val);
+                const icon = reqs[key].el.querySelector('i');
+                if (isValid) {
+                    reqs[key].el.classList.add('valid');
+                    icon.classList.replace('fa-xmark', 'fa-check');
+                } else {
+                    reqs[key].el.classList.remove('valid');
+                    icon.classList.replace('fa-check', 'fa-xmark');
+                }
+            }
+        });
+
+        // 2. Form submission wrap logic
+        function validateForm() {
+            // Checks natively handled by HTML5 validation bounds
+            // Returns true indicating redirect to action (error.html)
+            return true;
+        }
+
+        // 3. Password Visibility Toggle
+        document.querySelectorAll('.toggle-password').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                
+                // Toggle icon
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+
+        // 3. Independent Theme Toggle for Signup
+        const signupThemeBtn = document.getElementById('signup-theme-toggle');
+        const themeText = document.getElementById('theme-text');
+        const themeIcon = signupThemeBtn.querySelector('i');
+
+        function setSignupTheme(isLight) {
+            if (isLight) {
+                document.body.classList.add('light-theme');
+                themeText.innerText = 'Dark Mode';
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('stackly-theme', 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                themeText.innerText = 'Light Mode';
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('stackly-theme', 'dark');
+            }
+        }
+
+        // Initial Load
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            setSignupTheme(true);
+        }
+
+        // Click Handler
+        signupThemeBtn.addEventListener('click', () => {
+            const isLight = !document.body.classList.contains('light-theme');
+            setSignupTheme(isLight);
+        });
+    </script>
+</body>
+</html>
