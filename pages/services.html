@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Stackly Elite Booking</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/services.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <script>
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+        function navigate(path) {
+            if (path === 'javascript:void(0)') return;
+            const loader = document.getElementById('page-loader');
+            loader.style.display = 'flex';
+            setTimeout(() => { loader.style.opacity = '1'; }, 10);
+            setTimeout(() => { window.location.assign(path); }, 400);
+        }
+    </script>
+
+    <!-- Global Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="loader-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+            <p>Loading Experience...</p>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="top-bar-left">
+                <span><i class="fa-solid fa-clock"></i> Available 24*7</span>
+                <span><i class="fa-solid fa-envelope"></i> support@stackly.com</span>
+                <span><i class="fa-solid fa-phone"></i> +1 800 555 0199</span>
+            </div>
+            <div class="top-bar-right">
+                <span id="live-time"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exact Header Instance from index.html -->
+    <header class="headerWrap" id="main-header">
+        <div class="imgWrap">
+            <a href="../index.html">
+                <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+            </a>
+        </div>
+        
+        <div class="hamburger" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav class="linksWrap" id="nav-links">
+            <div class="topCloseBtn" id="close-btn">
+                <i class="fa-solid fa-times"></i>
+            </div>
+            <ul>
+                <li class="dropdown" id="home-dropdown">
+                    <div class="dropdownHeader">
+                        <a href="javascript:void(0)" class="homePageLink" id="home-nav-link">Home</a>
+                        <button class="dropdownToggle" aria-label="Toggle dropdown" id="dropdown-toggle-btn">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdownMenu" id="dropdown-menu">
+                        <li><a href="../index.html">Home 1</a></li>
+                        <li><a href="home2.html">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="dashboard.html">DashBoard</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li class="theme-toggle-li">
+                    <button id="theme-toggle-btn" class="nav-link-btn" aria-label="Toggle Theme">
+                        <span id="theme-text">Light Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="menuOverlay" id="menu-overlay" onclick="closeMenu()"></div>
+    </header>
+
+    <main>
+        <!-- Section 1: Split Video & Content Carousel -->
+        <section class="split-hero slanted-section fade-in">
+            <div class="split-container">
+                <!-- Left Video -->
+                <div class="split-video-wrapper">
+                    <video autoplay muted loop playsinline class="hero-video">
+                        <source src="../assets/Services/servicesHero.mp4" type="video/mp4">
+                    </video>
+                    <!-- Smooth Edge Overlay -->
+                    <div class="smooth-edge-overlay"></div>
+                </div>
+                <!-- Right Carousel -->
+                <div class="split-content-wrapper">
+                    <div class="carousel-track" id="hero-carousel">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide active">
+                            <h1>Premium Fleet Services</h1>
+                            <p>Experience the pinnacle of comfort and style. Our elite fleet ensures every kilometer traveled is exceptionally smooth and entirely reliable.</p>
+                            <div class="action-btns">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">View Fleet</button>
+                                <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Book Now</button>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide">
+                            <h1>Corporate Solutions</h1>
+                            <p>Designed for professionals who demand punctuality. Stackly Corporate offers priority scheduling and dedicated account management.</p>
+                            <div class="action-btns">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Join Corporate</button>
+                                <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Learn More</button>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide">
+                            <h1>Airport Transfers</h1>
+                            <p>Never miss a flight. Intelligent traffic routing and precise pick-up timing guarantee a stress-free transition to all major terminals.</p>
+                            <div class="action-btns">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Schedule Ride</button>
+                                <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">View Rates</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators" id="hero-indicators">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Services Grid -->
+        <section class="services-grid-section slanted-section fade-in">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h1>Our Transport Tiers</h1>
+                    <p>Designed to fit every scale of commute, whether you need a quick ride across town or a premium vehicle for corporate events, we've got you covered.</p>
+                </div>
+                
+                <div class="srv-grid">
+                    <!-- Service 1: Bike -->
+                    <div class="srv-box">
+                        <div class="srv-img-wrap">
+                            <img src="../assets/Services/1.webp" alt="Bike Transport">
+                        </div>
+                        <div class="srv-content">
+                            <h1>Stackly Bike</h1>
+                            <p>Beat the gridlock effortlessly with our fast, agile two-wheeler service.</p>
+                            <div class="action-btns">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Book Bike</button>
+                                <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 2: Auto -->
+                    <div class="srv-box">
+                        <div class="srv-img-wrap">
+                            <img src="../assets/Services/2.webp" alt="Auto Transport">
+                        </div>
+                        <div class="srv-content">
+                            <h1>Stackly Auto</h1>
+                            <p>Convenient point-to-point three-wheeler transits ideal for everyday local commutes.</p>
+                            <div class="action-btns">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Book Auto</button>
+                                <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 3: Mini Cab -->
+                    <div class="srv-box">
+                        <div class="srv-img-wrap">
+                            <img src="../assets/Services/3.webp" alt="Mini Cab Transport">
+                        </div>
+                        <div class="srv-content">
+                            <h1>Mini Cab</h1>
+                            <p>Cost-effective 4-seater hatchbacks ensuring privacy and reliable comfort.</p>
+                            <div class="action-btns">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Book Mini</button>
+                                <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 4: Cab -->
+                    <div class="srv-box">
+                        <div class="srv-img-wrap">
+                            <img src="../assets/Services/4.webp" alt="Standard Cab">
+                        </div>
+                        <div class="srv-content">
+                            <h1>Premium Cab</h1>
+                            <p>Spacious, refined sedans tailored to individuals valuing extra legroom and quiet travel.</p>
+                            <div class="action-btns">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Book Premium</button>
+                                <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 5: Taxi (SUV) -->
+                    <div class="srv-box">
+                        <div class="srv-img-wrap">
+                            <img src="../assets/Services/5.webp" alt="Taxi SUV Transport">
+                        </div>
+                        <div class="srv-content">
+                            <h1>Stackly Taxi XL</h1>
+                            <p>Large capacity SUVs accommodating up to 6 passengers with heavy luggage safely.</p>
+                            <div class="action-btns">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Book SUV</button>
+                                <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Careers Showcase -->
+        <section class="careers-section slanted-section fade-in">
+            <div class="container">
+                <div class="section-title-wrap center">
+                    <h1>Drive Your Career Forward</h1>
+                    <p>Join an energetic, rapidly expanding corporate family. We are actively looking for passionate individuals who want to redefine the standards of elite transportation globally.</p>
+                </div>
+                
+                <div class="careers-layout">
+                    <div class="career-images">
+                        <div class="careers-mobile-wrap">
+                            <h1 class="careers-mobile-title">Executive</h1>
+                            <img src="../assets/Services/6.webp" alt="Team 1" class="img-1">
+                            <div class="careers-mobile-overlay">
+                                <button onclick="navigate('error.html')" class="btn btn-glow btn-shine">View Roles</button>
+                            </div>
+                        </div>
+                        <div class="careers-mobile-wrap">
+                            <h1 class="careers-mobile-title">Operations</h1>
+                            <img src="../assets/Services/7.webp" alt="Team 2" class="img-2">
+                            <div class="careers-mobile-overlay">
+                                <button onclick="navigate('error.html')" class="btn btn-glow btn-shine">View Roles</button>
+                            </div>
+                        </div>
+                        <div class="careers-mobile-wrap">
+                            <h1 class="careers-mobile-title">Support</h1>
+                            <img src="../assets/Services/8.webp" alt="Team 3" class="img-3">
+                            <div class="careers-mobile-overlay">
+                                <button onclick="navigate('error.html')" class="btn btn-glow btn-shine">View Roles</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="career-text">
+                        <h1>Build the future of transport.</h1>
+                        <h4 style="margin-bottom: 10px; color: var(--text-color); font-weight: 500;">Current Opportunities</h4>
+                        <a href="error.html" class="colored-link" style="margin-bottom: 30px; display: inline-block;">View Open Positions <i class="fa-solid fa-arrow-right"></i></a>
+                        <div class="action-btns" style="display: flex; gap: 15px;">
+                            <button onclick="navigate('error.html')" class="btn btn-glow btn-shine">Apply Now</button>
+                            <button onclick="navigate('error.html')" class="btn btn-outline btn-shine">Our Culture</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Pricing Table -->
+        <section class="pricing-section slanted-section fade-in">
+            <div class="container">
+                <div class="section-title-wrap center">
+                    <h1>Transparent Pricing</h1>
+                    <p>No hidden fees. Pay exclusively for the miles you ride. Our algorithms ensure that your fares remain completely transparent, allowing you to seamlessly manage your budget for all tiers.</p>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Bike -->
+                    <div class="price-box">
+                        <h1>Bike</h1>
+                        <div class="charge-block">
+                            <h3>$1.50</h3>
+                            <span>/ km</span>
+                        </div>
+                        <ul class="price-details">
+                            <li><i class="fa-solid fa-check"></i> Standard Helmet</li>
+                            <li><i class="fa-solid fa-check"></i> Traffic Avoidance</li>
+                            <li><i class="fa-solid fa-check"></i> 1 Rider Max</li>
+                        </ul>
+                        <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Select Tier</button>
+                        <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Compare</button>
+                    </div>
+
+                    <!-- Auto -->
+                    <div class="price-box">
+                        <h1>Auto</h1>
+                        <div class="charge-block">
+                            <h3>$2.80</h3>
+                            <span>/ km</span>
+                        </div>
+                        <ul class="price-details">
+                            <li><i class="fa-solid fa-check"></i> 3 Riders Max</li>
+                            <li><i class="fa-solid fa-check"></i> Open Air Comfort</li>
+                            <li><i class="fa-solid fa-check"></i> Base Fare Included</li>
+                        </ul>
+                        <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Select Tier</button>
+                        <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Compare</button>
+                    </div>
+
+                    <!-- Mini Cab -->
+                    <div class="price-box">
+                        <h1>Mini Cab</h1>
+                        <div class="charge-block">
+                            <h3>$4.20</h3>
+                            <span>/ km</span>
+                        </div>
+                        <ul class="price-details">
+                            <li><i class="fa-solid fa-check"></i> 4 Riders Max</li>
+                            <li><i class="fa-solid fa-check"></i> AC Available</li>
+                            <li><i class="fa-solid fa-check"></i> Compact Comfort</li>
+                        </ul>
+                        <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Select Tier</button>
+                        <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Compare</button>
+                    </div>
+
+                    <!-- Cab -->
+                    <div class="price-box featured">
+                        <div class="featured-banner">Most Popular</div>
+                        <h1>Premium Cab</h1>
+                        <div class="charge-block">
+                            <h3>$6.50</h3>
+                            <span>/ km</span>
+                        </div>
+                        <ul class="price-details">
+                            <li><i class="fa-solid fa-check"></i> 4 Riders Max</li>
+                            <li><i class="fa-solid fa-check"></i> Luxury Sedan</li>
+                            <li><i class="fa-solid fa-check"></i> Wait Time Grace</li>
+                        </ul>
+                        <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Select Tier</button>
+                        <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Compare</button>
+                    </div>
+
+                    <!-- SUV/Taxi -->
+                    <div class="price-box">
+                        <h1>Taxi XL</h1>
+                        <div class="charge-block">
+                            <h3>$9.00</h3>
+                            <span>/ km</span>
+                        </div>
+                        <ul class="price-details">
+                            <li><i class="fa-solid fa-check"></i> 6 Riders Max</li>
+                            <li><i class="fa-solid fa-check"></i> Extra Luggage</li>
+                            <li><i class="fa-solid fa-check"></i> Group Priority</li>
+                        </ul>
+                        <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Select Tier</button>
+                        <button class="btn btn-outline btn-shine" onclick="navigate('error.html')">Compare</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: FAQ Accordion -->
+        <section class="faq-section fade-in">
+            <div class="container">
+                <div class="section-title-wrap center">
+                    <h1>Frequently Asked Questions</h1>
+                    <p>Clarity drives confidence. Get your answers right here. Explore our detailed knowledge base to understand exactly how our booking platforms, safety features, and premium services operate.</p>
+                </div>
+                
+                <div class="faq-accordion">
+                    <!-- Q1 -->
+                    <div class="faq-item">
+                        <button class="faq-toggle" onclick="toggleFaq(this)">
+                            <h3>How do I apply for a corporate account?</h3>
+                            <span class="cross-icon"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>You can apply by visiting the <a href="error.html">Corporate Registration</a> portal. It typically takes 24 hours for our team to approve and configure a new company dashboard.</p>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="faq-item">
+                        <button class="faq-toggle" onclick="toggleFaq(this)">
+                            <h3>Are the per-km charges fixed?</h3>
+                            <span class="cross-icon"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Our base per-km charges remain stable. However, dynamic routing during peak hours or extreme weather instances may introduce slight multiplier surges. You will always see the exact estimate before booking.</p>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="faq-item">
+                        <button class="faq-toggle" onclick="toggleFaq(this)">
+                            <h3>Can I become a Stackly driver partner?</h3>
+                            <span class="cross-icon"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Absolutely. Visit our <a href="signup.html">Driver Sign Up</a> page, upload your required licenses and ID proof, and our team will guide you through the 3-week orientation.</p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="faq-item">
+                        <button class="faq-toggle" onclick="toggleFaq(this)">
+                            <h3>What happens if I forget an item in the vehicle?</h3>
+                            <span class="cross-icon"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Use the 'Lost & Found' feature directly located in the 'Help Center' within your Dashboard. We can seamlessly connect you back to your driver instantly.</p>
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="faq-item">
+                        <button class="faq-toggle" onclick="toggleFaq(this)">
+                            <h3>Are pets allowed in the XL Tiers?</h3>
+                            <span class="cross-icon"></span>
+                        </button>
+                        <div class="faq-content">
+                            <p>Yes, all pets are welcome in our Cab and Taxi XL variants, provided they are securely leashed or inside a carrier to ensure driver safety.</p>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; color: var(--accent-color); font-weight: 500; font-size: 1.1rem; margin-top: 40px;">Still have questions? Contact our 24/7 dedicated VIP support team directly.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Exact Footer Instance from index.html -->
+    <footer>
+        <!-- Section SVG Bottom Cap ensuring straight separation for footer -->
+        <svg class="footer-slanted-edge" viewBox="0 0 100 10" preserveAspectRatio="none" style="position: absolute; top: -10px; left: 0; width: 100%; height: 10px; fill: var(--footer-bg);">
+            <polygon points="0,10 100,0 100,10" />
+        </svg>
+
+        <div class="footerWrap container">
+            <div class="box">
+                <div class="logoContainer">
+                    <img src="../assets/Home1/Header/logo.webp" class="footer-logo site-logo" alt="Stackly Logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+                </div>
+                <p class="footer-desc">
+                    Defining the future of elite booking and commute. Precision, safety, and unparalleled expertise. Driven by innovation, we deliver seamless journeys built on trust, performance, and excellence.
+                </p>
+            </div>
+
+            <div class="box">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('about.html')" class="nav-link-btn">About Us</button></li>
+                    <li><button onclick="navigate('dashboard.html')" class="nav-link-btn">Dashboard</button></li>
+                    <li><button onclick="navigate('signup.html')" class="nav-link-btn">Sign Up</button></li>
+                    <li><button onclick="navigate('login.html')" class="nav-link-btn">Login</button></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Help Center</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Safety</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Terms & Conditions</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Finance</button></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Contact</h4>
+                <ul class="contactInfo">
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 1:</strong> Downtown</li>
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 2:</strong> Beverly Hills</li>
+                    <li><i class="fa-solid fa-phone"></i> +1 800 555 0199</li>
+                    <li><i class="fa-solid fa-envelope"></i> vip@stackly.auto</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Newsletter</h4>
+                <form id="footer-newsletter-form" name="newsletterForm" class="subscribe-form" novalidate>
+                    <input type="email" id="newsletter-email" name="email" placeholder="Your Email" autocomplete="email" required>
+                    <span id="newsletter-error" style="color: var(--error-color); font-size: 0.8rem; display: block; margin-top: -5px; min-height: 15px;"></span>
+                    <button type="submit" class="btn btn-glow btn-shine full-width">Subscribe</button>
+                </form>
+                <div class="media">
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sub-footer">
+        <div class="container sub-footer-content">
+            <p>&copy; 2026 Stackly. All rights reserved.</p>
+            <div class="mini-app-links">
+                <button onclick="navigate('error.html')" class="mini-btn"><i class="fa-brands fa-google-play"></i> PlayStore</button>
+                <button onclick="navigate('error.html')" class="mini-btn"><i class="fa-brands fa-apple"></i> AppStore</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="scroll-up-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- Global Layout & Services specific logic -->
+    <script>
+        // Exact header layout scripts
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 100);
+        });
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                const loader = document.getElementById('page-loader');
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 100);
+            }
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const liveTime = document.getElementById('live-time');
+            if(liveTime) liveTime.innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const navLinks = document.getElementById('nav-links');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const dropdownHeader = document.querySelector('.dropdownHeader');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const dropdownIcon = document.querySelector('.dropdownToggle i');
+        const body = document.body;
+
+        function closeMenu() {
+            navLinks.classList.remove('showMenu');
+            menuOverlay.style.display = 'none';
+            body.classList.remove('menu-open'); 
+            dropdownMenu.classList.remove('showDropdown');
+            if (dropdownIcon) {
+                dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.add('showMenu');
+            menuOverlay.style.display = 'block';
+            body.classList.add('menu-open'); 
+        });
+        closeBtn.addEventListener('click', closeMenu);
+
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('showMenu') && !navLinks.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        dropdownHeader.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('showDropdown');
+            if (dropdownMenu.classList.contains('showDropdown')) {
+                dropdownIcon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeText = document.getElementById('theme-text');
+
+        function setThemeState(isLight) {
+            if (isLight) {
+                document.body.classList.add('light-theme');
+                themeText.innerText = 'Dark Mode';
+                localStorage.setItem('stackly-theme', 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                themeText.innerText = 'Light Mode';
+                localStorage.setItem('stackly-theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            setThemeState(true);
+        }
+        
+        themeToggleBtn.addEventListener('click', () => {
+            const isLight = !document.body.classList.contains('light-theme');
+            setThemeState(isLight);
+        });
+
+        const header = document.getElementById('main-header');
+        const scrollBtn = document.getElementById('scroll-up-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const footerForm = document.getElementById('footer-newsletter-form');
+        const newsletterError = document.getElementById('newsletter-error');
+        const newsletterEmail = document.getElementById('newsletter-email');
+
+        footerForm.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+            newsletterError.innerText = '';
+            if (!newsletterEmail.value.trim() || !/\S+@\S+\.\S+/.test(newsletterEmail.value)) {
+                newsletterError.innerText = 'Valid email is required';
+                newsletterEmail.style.borderColor = 'var(--error-color)';
+            } else {
+                navigate('error.html');
+            }
+        });
+
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElems.forEach(elem => fadeInObserver.observe(elem));
+
+
+        /* --- Services Specific Logic --- */
+
+        // FAQ Toggle Logic
+        function toggleFaq(button) {
+            const parent = button.parentElement;
+            const content = button.nextElementSibling;
+            
+            // Close other currently open items to maintain neatness
+            document.querySelectorAll('.faq-item.active').forEach(item => {
+                if(item !== parent) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-content').style.maxHeight = null;
+                }
+            });
+
+            if (parent.classList.contains('active')) {
+                // If closing
+                parent.classList.remove('active');
+                content.style.maxHeight = null;
+            } else {
+                // If opening
+                parent.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+
+        // Hero Carousel Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const slideInterval = 5000; // Change slide every 5s
+
+        function goToSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            currentSlide = index;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % slides.length;
+            goToSlide(nextIndex);
+        }
+
+        let slideTimer = setInterval(nextSlide, slideInterval);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                clearInterval(slideTimer);
+                goToSlide(parseInt(this.getAttribute('data-slide')));
+                slideTimer = setInterval(nextSlide, slideInterval);
+            });
+        });
+
+    </script>
+</body>
+</html>

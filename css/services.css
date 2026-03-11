@@ -1,0 +1,760 @@
+/* =========================================
+   Stackly Elite Booking | Services Page Styles
+   Structure: Normal Desktop -> 1024 -> 768 -> 425.6 -> 375.2
+========================================= */
+
+/* --- Base Typography & Spacing --- */
+.section-title-wrap {
+    margin-bottom: 60px;
+}
+.section-title-wrap h1 {
+    font-size: 2.5rem;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+.section-title-wrap p {
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+.section-title-wrap.center {
+    text-align: center;
+}
+.section-title-wrap.right {
+    text-align: right;
+}
+
+/* Base Straight Structure Configuration */
+.slanted-section {
+    position: relative;
+    padding: 100px 0;
+    /* Straight sections - Slant effectively removed while preserving classnames */
+    background: var(--bg-main);
+}
+
+/* Alternating background colors to show off the slant contrast smoothly */
+.services-grid-section, .pricing-section {
+    background: var(--bg-card);
+}
+
+
+/* --- SECTION 1: Split Hero Carousel --- */
+.split-hero {
+    padding-top: 15vh; /* Account for sticky header */
+}
+
+.split-container {
+    display: flex;
+    width: 100%; 
+    min-height: 85vh;
+    align-items: stretch;
+}
+
+.split-video-wrapper {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    /* Soft blend the bottom of the video so it smoothly meets the background and RIGHT edge invisible */
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%), linear-gradient(to right, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%), linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0; left: 0;
+}
+
+/* Smooth Edge separation generated using an angled gradient overlay on the video side */
+.smooth-edge-overlay {
+    position: absolute;
+    top: 0px; right: 0px; bottom: 0px;
+    width: 35%;
+    background: linear-gradient(to right, transparent 0%, var(--bg-main) 100%);
+    z-index: 2;
+}
+
+.split-content-wrapper {
+    flex: 1;
+    background: var(--bg-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 80px;
+    position: relative;
+    z-index: 3;
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+.carousel-slide h1 {
+    font-size: 3rem;
+    color: var(--text-main);
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.carousel-slide p {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    line-height: 1.8;
+    margin-bottom: 50px;
+    max-width: 90%;
+}
+
+.carousel-slide .action-btns {
+    display: flex;
+    gap: 20px;
+}
+
+/* Indicators */
+.carousel-indicators {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+}
+.carousel-indicators .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-light);
+    cursor: pointer;
+    transition: var(--transition);
+}
+.carousel-indicators .dot.active {
+    background: var(--accent-color);
+    width: 30px;
+    border-radius: 6px;
+}
+
+body.light-theme .smooth-edge-overlay {
+    background: linear-gradient(to right, transparent 0%, var(--bg-main) 100%);
+}
+
+
+/* --- SECTION 2: Services Grid --- */
+.srv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.srv-box {
+    background: var(--bg-main);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.srv-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 45px rgba(6, 182, 212, 0.15);
+}
+
+.srv-img-wrap {
+    width: 100%;
+    height: 240px;
+    position: relative;
+    border-bottom: 5px solid var(--accent-color);
+    overflow: hidden;
+}
+
+.srv-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.srv-box:hover .srv-img-wrap img {
+    transform: scale(1.08); /* Only apply smooth scale animations, no 3D flip */
+}
+
+.srv-content {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.srv-content h1 {
+    font-size: 1.6rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.srv-content p {
+    color: var(--text-main);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex: 1; /* Pushes buttons to bottom */
+}
+
+.srv-content .action-btns {
+    display: flex;
+    gap: 15px;
+}
+.srv-content .action-btns .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+
+/* --- SECTION 3: Careers Showcase --- */
+.careers-layout {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.career-images {
+    flex: 1.5;
+    position: relative;
+    height: 400px;
+}
+
+.career-images img {
+    position: absolute;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.5); /* Glowing effect */
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.career-images img.img-1 {
+    width: 55%; height: 280px;
+    top: 0; left: 0;
+    z-index: 1;
+}
+.career-images img.img-2 {
+    width: 45%; height: 320px;
+    top: 40px; right: 0;
+    z-index: 2;
+    border: 4px solid var(--bg-main);
+}
+.career-images img.img-3 {
+    width: 50%; height: 240px;
+    bottom: 0; left: 20%;
+    z-index: 3;
+    border: 4px solid var(--bg-main);
+}
+
+.career-images:hover img.img-2 {
+    transform: translateY(-10px);
+}
+.career-images:hover img.img-1 {
+    transform: translateY(-5px);
+}
+
+/* Hide mobile overlay elements globally by default */
+.careers-mobile-title,
+.careers-mobile-overlay {
+    display: none;
+}
+
+.career-text {
+    flex: 1;
+}
+
+.career-text h1 {
+    font-size: 3rem;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+.colored-link {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.colored-link:hover {
+    color: var(--text-main);
+}
+body.light-theme .colored-link:hover {
+    color: #000;
+}
+
+
+/* --- SECTION 4: Pricing Table --- */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 items fit exactly onto wide desktop */
+    gap: 20px;
+    align-items: stretch;
+}
+
+.price-box {
+    background: var(--bg-main);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.price-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 50px rgba(0,0,0,0.1);
+    border-color: rgba(6, 182, 212, 0.4);
+}
+
+.price-box h1 {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.charge-block {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.charge-block h3 {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+.charge-block span {
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.price-details {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 40px;
+    padding-left: 0;
+    width: 100%;
+}
+
+.price-details li {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-details li i {
+    color: var(--accent-color);
+    font-size: 0.85rem;
+}
+
+.price-box .btn {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+/* Featured Price Banner */
+.price-box.featured {
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 40px rgba(6, 182, 212, 0.15);
+    transform: scale(1.05); /* Stand out slightly naturally */
+    z-index: 2;
+}
+.price-box.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+.featured-banner {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--accent-color);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 15px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+
+/* --- SECTION 5: FAQ Accordion --- */
+.faq-section {
+    padding: 100px 0 150px; /* Base bottom padding for non-slanted final section before footer */
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background: var(--bg-card);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    border-color: rgba(6, 182, 212, 0.4);
+}
+
+.faq-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: left;
+    gap: 20px;
+}
+
+.faq-toggle h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin: 0;
+    flex: 1;
+}
+
+.cross-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.cross-icon::before, .cross-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--text-main);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hardcode Light Theme + Icons */
+body.light-theme .cross-icon::before,
+body.light-theme .cross-icon::after {
+    background-color: #333; /* Make cross visible explicitly in light mode */
+}
+
+/* Horizontal line of + */
+.cross-icon::before {
+    top: 50%; left: 0;
+    width: 100%; height: 2px;
+    margin-top: -1px;
+}
+/* Vertical line of + */
+.cross-icon::after {
+    top: 0; left: 50%;
+    width: 2px; height: 100%;
+    margin-left: -1px;
+}
+
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: var(--bg-main);
+}
+
+.faq-content p {
+    padding: 0 30px 25px;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+.faq-content a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Active Javascript State */
+.faq-item.active {
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.1);
+}
+
+.faq-item.active .faq-toggle {
+    color: var(--accent-color);
+}
+
+.faq-item.active .cross-icon::after {
+    transform: rotate(90deg); /* Turn + into - smoothly */
+}
+.faq-item.active .cross-icon::before {
+    background-color: var(--accent-color);
+}
+.faq-item.active .cross-icon::after {
+    background-color: var(--accent-color);
+}
+
+
+/* =========================================================
+   MEDIA QUERIES ALIGNMENT START 
+========================================================= */
+
+/* --- 1024px Layout Laptop --- */
+@media screen and (max-width: 1024px) {
+    /* Hero */
+    .split-content-wrapper {
+        padding: 40px;
+    }
+    .carousel-slide h1 {
+        font-size: 2.2rem;
+    }
+    /* Grid */
+    .srv-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    /* Careers */
+    .careers-layout {
+        gap: 30px;
+    }
+    .career-text h1 {
+        font-size: 2.5rem;
+    }
+    /* Pricing */
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr); /* Drop from 5 to 3 columns, dropping 2 to next row */
+        gap: 25px;
+    }
+    .price-box.featured {
+        transform: scale(1); /* Drop strict scaling if it overlaps on tablet */
+    }
+    .price-box.featured:hover {
+        transform: translateY(-10px);
+    }
+}
+
+/* --- 768px Layout Tablet --- */
+@media screen and (max-width: 768px) {
+    /* Straight padding normalizer */
+    .slanted-section {
+        padding: 80px 0;
+    }
+
+    /* Hero */
+    .split-container {
+        flex-direction: column;
+    }
+    .split-video-wrapper {
+        min-height: 50vh;
+        /* Mobile video requires 75% height relative representation */
+        height: 75vh;
+        -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    }
+    .smooth-edge-overlay {
+        width: 100%;
+        height: 35%;
+        top: auto;
+        bottom: 0px;
+        background: linear-gradient(to bottom, transparent 0%, var(--bg-main) 100%);
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, black 80%);
+        mask-image: linear-gradient(to top, transparent 0%, black 80%);
+    }
+    body.light-theme .smooth-edge-overlay {
+        background: linear-gradient(to bottom, transparent 0%, var(--bg-main) 100%);
+    }
+
+    /* Careers */
+    .careers-layout {
+        flex-direction: column;
+        text-align: center;
+    }
+    .career-text .action-btns {
+        justify-content: center;
+    }
+    
+    .career-images {
+        height: auto;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px; /* High gap to prevent overlapping */
+    }
+    
+    /* Career image wrapper logic for mobile overlay */
+    .careers-mobile-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 9/16; 
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 0 40px rgba(6, 182, 212, 0.3); 
+    }
+
+    /* 9:16 vertical card shape structure for stack */
+    .careers-mobile-wrap img {
+        position: absolute !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        border: none !important;
+        margin: 0 !important;
+        left: 0 !important;
+        top: 0 !important;
+        transform: none !important;
+        z-index: 1;
+        transition: transform 0.4s ease;
+    }
+    
+    .careers-mobile-wrap:hover {
+        transform: translateY(-8px);
+    }
+    
+    .careers-mobile-wrap:hover img {
+        transform: scale(1.05) !important;
+    }
+    
+    /* Ensure overlays stay hidden on tablet */
+    .careers-mobile-overlay,
+    .careers-mobile-title {
+        display: none !important;
+    }
+
+    /* Pricing */
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .section-title-wrap.right {
+        text-align: center;
+    }
+}
+
+/* --- 425.6px Mobile Large --- */
+@media screen and (max-width: 425.6px) {
+    /* Typography */
+    .section-title-wrap h1 {
+        font-size: 2rem;
+    }
+    
+    /* Hero */
+    .split-content-wrapper {
+        padding: 30px 20px;
+    }
+    .carousel-slide h1 {
+        font-size: 1.8rem;
+    }
+    .carousel-slide .action-btns {
+        flex-direction: column;
+    }
+    
+    /* Grid */
+    .srv-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Career Overlays ONLY for mobile */
+    .careers-mobile-overlay {
+        display: flex !important;
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 2;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        opacity: 1; /* Always visible to hide low quality */
+        transition: background 0.4s ease;
+    }
+    .careers-mobile-title {
+        display: block !important;
+        position: absolute;
+        top: 90%; left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+        transition: opacity 0.4s ease;
+    }
+    .careers-mobile-wrap:hover .careers-mobile-overlay {
+        background: rgba(0,0,0,0.7); /* Slightly darker on hover */
+    }
+    .careers-mobile-wrap:hover .careers-mobile-title {
+        opacity: 0; 
+    }
+    
+    /* Hide 3rd image entirely on mobile */
+    .careers-mobile-wrap:nth-child(3) {
+        display: none !important;
+    }
+    
+    /* Careers */
+    .career-text h1 {
+        font-size: 2rem;
+    }
+
+    /* Pricing */
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* FAQ */
+    .faq-toggle {
+        padding: 20px;
+    }
+    .faq-toggle h3 {
+        font-size: 1rem;
+    }
+    .faq-content p {
+        padding: 0 20px 20px;
+    }
+}
+
+/* --- 375.2px Mobile Medium --- */
+@media screen and (max-width: 375.2px) {
+    .carousel-track {
+        min-height: 400px;
+    }
+    .srv-content .action-btns {
+        flex-direction: column;
+    }
+    .career-images img.img-2 {
+        width: 50%;
+    }
+}
