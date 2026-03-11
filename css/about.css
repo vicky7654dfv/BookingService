@@ -1,0 +1,584 @@
+/* ==========================================================================
+   ABOUT PAGE CORE Normal STYLES
+   ========================================================================== */
+
+.about-hero-section {
+    position: relative;
+    height: 750px;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 80px; /* Offset the header height to show hidden video parts */
+}
+
+.hero-bg-video-container {
+    position: absolute; /* Bounds exactly to the hero section instead of fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.hero-bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0; /* Base layer */
+}
+
+.overlay-dark {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Layered gradient: top heavy to hide quality issues at top, then consistent dark overlay */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0.5) 100%);
+    z-index: 1; /* Ensure this is on top of the video inside the container */
+}
+
+.about-carousel-container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: flex-end; /* Align bottom */
+    justify-content: center;
+    z-index: 2;
+    overflow: hidden; /* Hide slides moving off-screen vertically */
+    padding-bottom: 50px; /* Offset from exact bottom */
+}
+
+.about-carousel-track {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    transform: translateY(0);
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.about-carousel-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end; /* Force content to bottom of slide */
+    justify-content: center;
+}
+
+.slide-content h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    color: var(--text-color); /* Matches dark/light appropriately if inverted globally, but user requested 'same color as dark theme'. Pure white often fits. */
+    /* Let's force it to white to ensure it stays same as dark theme over a video bg */
+    color: #ffffff;
+    opacity: 0;
+    animation: fadeUp 1s forwards 0.3s;
+}
+
+.slide-content p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #e2e8f0; /* Keeping it consistently light against video bg */
+    opacity: 0;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    animation: fadeUp 1s forwards 0.6s;
+}
+
+.slide-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 1s forwards 0.9s;
+}
+
+/* Distinct Hero Button styling for maximum visibility over video */
+.slide-actions .btn-glow {
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+.slide-actions .btn-glow:hover {
+    background: #ffffff !important;
+    color: black !important;
+    border-color: #ffffff !important;
+}
+
+.slide-actions .nav-link-btn {
+    background: rgba(255,255,255,0.1) !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+    padding: 12px 25px; /* Better default padding */
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+}
+.slide-actions .nav-link-btn:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+}
+
+/* 2. Founders Section */
+.founders-section {
+    padding: 100px 0;
+    background-color: var(--bg-primary);
+    position: relative;
+    z-index: 10;
+}
+
+.founders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.founder-card {
+    background-color: var(--bg-secondary);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.founder-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.founder-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.founder-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.founder-card:hover .founder-img-wrapper img {
+    transform: scale(1.05);
+}
+
+.founder-social-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 100px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 20px;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.founder-card:hover .founder-social-overlay {
+    opacity: 1;
+}
+
+.social-hover-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+    transform: translateY(20px);
+}
+
+.founder-card:hover .social-hover-btn {
+    transform: translateY(0);
+}
+
+.social-hover-btn:hover {
+    background: #fff;
+    color: var(--accent-color);
+}
+
+.founder-content {
+    padding: 30px;
+    text-align: center;
+}
+
+.founder-content h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.founder-role {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.founder-bio {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+.border-btn {
+    border: 2px solid var(--primary-color);
+    color: var(--text-color);
+    padding: 12px 30px; /* Sufficient padding for hover area */
+}
+.border-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* 3. Vision & Mission (Fixed Parallax) */
+.vision-mission-section {
+    position: relative;
+    padding: 120px 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.vision-bg-parallax {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('../assets/About/bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 0;
+    filter: brightness(0.7); /* Illusion of being pushed further back */
+}
+
+.vision-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 15, 26, 0.4); /* Slightly more opaque for better text contrast */
+    z-index: 1;
+}
+
+.vision-content {
+    position: relative;
+    z-index: 2;
+}
+
+.vision-content h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.vision-para {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.vision-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.bordered-btn {
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    background: transparent;
+    padding: 12px 30px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+.bordered-btn:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* 4. History & Timeline */
+.history-section {
+    padding: 100px 0;
+    background-color: var(--bg-tertiary);
+    position: relative;
+    z-index: 10;
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.history-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 350px;
+}
+
+.history-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.history-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    transition: background 0.4s ease;
+}
+
+.history-unhover-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.history-unhover-content h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.history-hover-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%); /* Start lower */
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.history-card:hover img {
+    transform: scale(1.08);
+}
+
+.history-card:hover .history-overlay {
+    background: rgba(0,0,0,0.7);
+}
+
+.history-card:hover .history-unhover-content {
+    opacity: 0;
+    transform: translate(-50%, -80%);
+}
+
+.history-card:hover .history-hover-content {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* 5. Elaborated Testimonials */
+.testimonials-section {
+    padding: 100px 0 120px;
+    background-color: var(--bg-primary);
+    position: relative;
+    z-index: 10;
+}
+
+.testimonial-slider-container {
+    position: relative;
+    margin-top: 50px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.testimonial-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.testimonial-slide {
+    flex: 0 0 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.testimonial-box {
+    background: var(--bg-secondary);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+    position: relative;
+    transition: transform 0.3s ease;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.testimonial-box:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.quote-notation {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 4rem;
+    color: var(--accent-color);
+    opacity: 0.15;
+}
+
+.testimonial-box h1 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: var(--text-color);
+}
+
+.testimonial-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 35px;
+}
+
+.testimonial-author h4 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.colored-link {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.colored-trigger {
+    color: var(--accent-color);
+    font-weight: 600;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.colored-trigger:hover {
+    color: var(--primary-color);
+}
+
+.testimonial-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.test-control-btn {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.test-control-btn:hover {
+    background: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+}
+
+
+/* Fade Keyframes */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES
+   ========================================================================== */
+
+/* 1024px */
+@media screen and (max-width: 1024px) {
+    .slide-content h1 { font-size: 3.2rem; }
+    .founders-grid { gap: 20px; }
+    .vision-content h1 { font-size: 3rem; }
+    .slide-actions .nav-link-btn {
+    padding: 5px 10px;
+}
+}
+
+/* 768px */
+@media screen and (max-width: 768px) {
+    .slide-content h1 { font-size: 2.6rem; }
+    .slide-content p { font-size: 1.05rem; }
+    .slide-actions { flex-direction: column; width: 80%; margin: 0 auto; }
+       .slide-actions .nav-link-btn {
+    padding: 15px 15px;
+    text-align: center;
+}
+    .founders-grid { grid-template-columns: 1fr; }
+    .founder-img-wrapper { height: 350px; }
+    
+    .vision-content h1 { font-size: 2.5rem; }
+    .vision-actions { flex-direction: column; width: 80%; margin: 0 auto; }
+    
+    .history-grid { grid-template-columns: 1fr; }
+    .history-card { height: 300px; }
+    
+    .testimonial-box { padding: 30px; }
+    .testimonial-box h1 { font-size: 1.8rem; }
+    .testimonial-text { font-size: 1.1rem; }
+}
+
+/* 425.6px */
+@media screen and (max-width: 425.6px) {
+    .about-hero-section { height: 650px; }
+    .slide-content h1 { font-size: 1.2rem; } /* Upscaled to 1.2rem */
+    .slide-content p { font-size: 0.95rem; }
+    
+    .founders-section, .history-section, .testimonials-section { padding: 60px 0; }
+    .vision-mission-section { padding: 80px 0; }
+    
+    .founder-img-wrapper { height: 300px; }
+    .founder-content h2 { font-size: 1.6rem; }
+    
+    .history-card { height: 260px; }
+    .history-unhover-content h1 { font-size: 1.8rem; }
+    
+    .testimonial-box { padding: 25px 20px; }
+    .testimonial-box h1 { font-size: 1.5rem; }
+}
+
+/* 375.2px */
+@media screen and (max-width: 375.2px) {
+    .slide-content h1 { font-size: 1.2rem; } /* Upscaled to 1.2rem */
+    .slide-content p { font-size: 0.85rem; }
+    
+    .founder-content { padding: 20px 15px; }
+    .founder-bio { font-size: 0.95rem; }
+    
+    .vision-content h1 { font-size: 2rem; }
+    .vision-para { font-size: 1rem; }
+    
+    .testimonial-text { font-size: 1rem; margin-bottom: 25px; }
+    .testimonial-author h4 { font-size: 1rem; }
+}

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Stackly Elite Booking</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/about.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <script>
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+        function navigate(path) {
+            if (path === 'javascript:void(0)') return;
+            const loader = document.getElementById('page-loader');
+            loader.style.display = 'flex';
+            setTimeout(() => { loader.style.opacity = '1'; }, 10);
+            setTimeout(() => { window.location.assign(path); }, 400);
+        }
+    </script>
+
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="loader-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+            <p>Loading Experience...</p>
+        </div>
+    </div>
+
+    <!-- HEADER & TOPBAR -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="top-bar-left">
+                <span><i class="fa-solid fa-clock"></i> Available 24*7</span>
+                <span><i class="fa-solid fa-envelope"></i> support@stackly.com</span>
+                <span><i class="fa-solid fa-phone"></i> +1 800 555 0199</span>
+            </div>
+            <div class="top-bar-right">
+                <span id="live-time"></span>
+            </div>
+        </div>
+    </div>
+
+    <header class="headerWrap" id="main-header">
+        <div class="imgWrap">
+            <a href="../index.html">
+                <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+            </a>
+        </div>
+        
+        <div class="hamburger" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <nav class="linksWrap" id="nav-links">
+            <div class="topCloseBtn" id="close-btn">
+                <i class="fa-solid fa-times"></i>
+            </div>
+            <ul>
+                <li class="dropdown" id="home-dropdown">
+                    <div class="dropdownHeader">
+                        <a href="javascript:void(0)" class="homePageLink" id="home-nav-link">Home</a>
+                        <button class="dropdownToggle" aria-label="Toggle dropdown" id="dropdown-toggle-btn">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdownMenu" id="dropdown-menu">
+                        <li><a href="../index.html">Home 1</a></li>
+                        <li><a href="home2.html">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html" class="active-nav">About Us</a></li>
+                <li><a href="dashboard.html">DashBoard</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li class="theme-toggle-li">
+                    <button id="theme-toggle-btn" class="nav-link-btn" aria-label="Toggle Theme">
+                        <span id="theme-text">Light Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="menuOverlay" id="menu-overlay" onclick="closeMenu()"></div>
+    </header>
+
+    <main>
+        <!-- Section 1: Heritage & Hero Carousel -->
+        <section class="about-hero-section fade-in">
+            <div class="hero-bg-video-container">
+                <video autoplay muted loop playsinline class="hero-bg-video">
+                    <source src="../assets/About/heroVid.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+                <div class="overlay-dark"></div>
+            </div>
+            <div class="about-carousel-container container">
+                <div class="about-carousel-track" id="hero-carousel-track">
+                    
+                    <div class="about-carousel-slide">
+                        <div class="slide-content center-aligned">
+                            <h1>Heritage & Excellence</h1>
+                            <p class="section-subtitle">Since 2012, we have been revolutionizing elite transportation with uncompromising standards for safety, precision, and world-class luxury navigation.</p>
+                            <div class="slide-actions">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">View Heritage</button>
+                                <button class="btn nav-link-btn" style="border: 1px solid var(--border-color);" onclick="navigate('error.html')">Our Standards</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-carousel-slide">
+                        <div class="slide-content center-aligned">
+                            <h1>Unparalleled Precision</h1>
+                            <p class="section-subtitle">Our fleet is meticulously maintained by master technicians, guaranteeing a flawless and deeply reliable transit experience every single ride.</p>
+                            <div class="slide-actions">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Explore Fleet</button>
+                                <button class="btn nav-link-btn" style="border: 1px solid var(--border-color);" onclick="navigate('error.html')">Meet Chauffeurs</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-carousel-slide">
+                        <div class="slide-content center-aligned">
+                            <h1>Global Connectivity</h1>
+                            <p class="section-subtitle">We seamlessly integrate into your busy lifestyle across borders, offering an expansive and exclusive network of executive transit options worldwide.</p>
+                            <div class="slide-actions">
+                                <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Global Coverage</button>
+                                <button class="btn nav-link-btn" style="border: 1px solid var(--border-color);" onclick="navigate('error.html')">Corporate Plans</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- Empty indicators to serve structural flow -->
+            <div class="hero-carousel-indicators" id="hero-carousel-indicators"></div>
+        </section>
+
+        <!-- Section 2: Core Leadership (Founders Grid) -->
+        <section class="founders-section fade-in">
+            <div class="container">
+                <div class="section-header-text center-aligned">
+                    <h1>Core Leadership</h1>
+                    <p class="section-subtitle">Meet the visionary minds driving the future of executive transit. Experience the passion inside our boardrooms.</p>
+                </div>
+                
+                <div class="founders-grid">
+                    
+                    <div class="founder-card">
+                        <div class="founder-img-wrapper">
+                            <img src="../assets/About/1.webp" alt="Sarah Jenkins" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop'">
+                            <div class="founder-social-overlay">
+                                <button class="social-hover-btn" onclick="navigate('error.html')"><i class="fa-brands fa-linkedin-in"></i></button>
+                                <button class="social-hover-btn" onclick="navigate('error.html')"><i class="fa-brands fa-twitter"></i></button>
+                                <button class="social-hover-btn" onclick="navigate('error.html')"><i class="fa-solid fa-envelope"></i></button>
+                            </div>
+                        </div>
+                        <div class="founder-content">
+                            <h2>Sarah Jenkins</h2>
+                            <p class="founder-role">Chief Executive Officer</p>
+                            <p class="founder-bio">Sarah brings over two decades of transformative leadership in luxury logistics, spearheading global operations and elite client acquisition.</p>
+                            <button class="btn nav-link-btn border-btn" onclick="navigate('error.html')">Read Biography...</button>
+                        </div>
+                    </div>
+
+                    <div class="founder-card">
+                        <div class="founder-img-wrapper">
+                            <img src="../assets/About/2.webp" alt="Marcus Chen" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop'">
+                            <div class="founder-social-overlay">
+                                <button class="social-hover-btn" onclick="navigate('error.html')"><i class="fa-brands fa-linkedin-in"></i></button>
+                                <button class="social-hover-btn" onclick="navigate('error.html')"><i class="fa-brands fa-twitter"></i></button>
+                                <button class="social-hover-btn" onclick="navigate('error.html')"><i class="fa-solid fa-envelope"></i></button>
+                            </div>
+                        </div>
+                        <div class="founder-content">
+                            <h2>Marcus Chen</h2>
+                            <p class="founder-role">Head of Global Operations</p>
+                            <p class="founder-bio">Marcus engineers the flawlessly orchestrated logistics architecture that ensures complete reliability and unmatched punctuality across all our regions.</p>
+                            <button class="btn nav-link-btn border-btn" onclick="navigate('error.html')">Read Biography...</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Vision & Mission (Fixed Bg Image) -->
+        <section class="vision-mission-section fade-in">
+            <div class="vision-bg-parallax"></div>
+            <div class="vision-overlay"></div>
+            
+            <div class="container vision-content center-aligned">
+                <h1>Our Core Mission</h1>
+                <p class="section-subtitle vision-para">
+                    To relentlessly pioneer the intersection of privacy, luxury, and efficiency. We are not just transporting individuals; we are engineering moments of pristine calm in an otherwise chaotic world. Our vision focuses on crafting zero-friction travel environments powered by state-of-the-art predictive technologies and deeply personalized white-glove service.
+                </p>
+                <div class="vision-actions">
+                    <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Discover Our Impact</button>
+                    <button class="btn bordered-btn" onclick="navigate('error.html')">Download Manifesto</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: History & Development Timeline -->
+        <section class="history-section fade-in">
+            <div class="container">
+                <div class="section-header-text center-aligned">
+                    <h1>A Legacy of Momentum</h1>
+                    <p class="section-subtitle">Witness the transformative milestones that shaped the Stackly Elite experience over the past decade.</p>
+                </div>
+
+                <div class="history-grid">
+                    <div class="history-card">
+                        <img src="../assets/About/11.webp" alt="Company Genesis" onerror="this.src='https://images.unsplash.com/photo-1555529771-4822eb1d3e8e?q=80&w=800&auto=format&fit=crop'">
+                        <div class="history-overlay"></div>
+                        <div class="history-unhover-content">
+                            <h1>2016: The Genesis</h1>
+                        </div>
+                        <div class="history-hover-content">
+                            <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Explore Chapter</button>
+                        </div>
+                    </div>
+
+                    <div class="history-card">
+                        <img src="../assets/About/22.webp" alt="Global Expansion" onerror="this.src='https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?q=80&w=800&auto=format&fit=crop'">
+                        <div class="history-overlay"></div>
+                        <div class="history-unhover-content">
+                            <h1>2022: Global Expansion</h1>
+                        </div>
+                        <div class="history-hover-content">
+                            <button class="btn btn-glow btn-shine" onclick="navigate('error.html')">Explore Chapter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Elaborated Testimonials (No Images) -->
+        <section class="testimonials-section fade-in">
+            <div class="container">
+                <div class="section-header-text center-aligned">
+                    <h1>Client Perspectives</h1>
+                    <p class="section-subtitle">Hear directly from the executives, visionaries, and leaders who rely on our elite service daily.</p>
+                </div>
+
+                <div class="testimonial-slider-container">
+                    <div class="testimonial-track" id="testimonial-track">
+                        
+                        <div class="testimonial-slide">
+                            <div class="testimonial-box">
+                                <div class="quote-notation"><i class="fa-solid fa-quote-left"></i></div>
+                                <h1>Absolute Game Changer</h1>
+                                <p class="testimonial-text">
+                                    "The level of discretion and absolute punctuality Stackly brings to my cross-border travels is staggering. I've completely bypassed the standard logistical headaches. Their predictive routing is flawless."
+                                </p>
+                                <div class="testimonial-author">
+                                    <h4>Jonathan Davis <span class="colored-link">- CEO, Horizon Tech</span></h4>
+                                </div>
+                                <button class="btn nav-link-btn colored-trigger" onclick="navigate('error.html')">Read Full Review &rarr;</button>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-slide">
+                            <div class="testimonial-box">
+                                <div class="quote-notation"><i class="fa-solid fa-quote-left"></i></div>
+                                <h1>Impeccable White-Glove Service</h1>
+                                <p class="testimonial-text">
+                                    "From the moment the doors open, the atmosphere is utterly serene. The chauffeurs operate with an incredible blend of warmth and absolute professionalism. There's truly no alternative."
+                                </p>
+                                <div class="testimonial-author">
+                                    <h4>Eleanor Vance <span class="colored-link">- Global Director, Vance Corp</span></h4>
+                                </div>
+                                <button class="btn nav-link-btn colored-trigger" onclick="navigate('error.html')">Read Full Review &rarr;</button>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-slide">
+                            <div class="testimonial-box">
+                                <div class="quote-notation"><i class="fa-solid fa-quote-left"></i></div>
+                                <h1>Unyielding Reliability</h1>
+                                <p class="testimonial-text">
+                                    "I frequently require last-minute modifications to impossible itineraries. The Stackly network adapts instantly. It's an essential pillar of operations for my entirely nomadic team."
+                                </p>
+                                <div class="testimonial-author">
+                                    <h4>Michael Rossi <span class="colored-link">- Managing Partner, Rossi Associates</span></h4>
+                                </div>
+                                <button class="btn nav-link-btn colored-trigger" onclick="navigate('error.html')">Read Full Review &rarr;</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="testimonial-controls">
+                        <button class="test-control-btn" id="test-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="test-control-btn" id="test-next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footerWrap container">
+            <div class="box">
+                <div class="logoContainer">
+                    <img src="../assets/Home1/Header/logo.webp" class="footer-logo site-logo" alt="Stackly Logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png'">
+                </div>
+                <p class="footer-desc">
+                    Defining the future of elite booking and commute. Precision, safety, and unparalleled expertise. Driven by innovation, we deliver seamless journeys built on trust, performance, and excellence.
+                </p>
+            </div>
+
+            <div class="box">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('about.html')" class="nav-link-btn">About Us</button></li>
+                    <li><button onclick="navigate('dashboard.html')" class="nav-link-btn">Dashboard</button></li>
+                    <li><button onclick="navigate('signup.html')" class="nav-link-btn">Sign Up</button></li>
+                    <li><button onclick="navigate('login.html')" class="nav-link-btn">Login</button></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Help Center</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Safety</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Terms & Conditions</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Finance</button></li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Contact</h4>
+                <ul class="contactInfo">
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 1:</strong> Downtown</li>
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 2:</strong> Beverly Hills</li>
+                    <li><i class="fa-solid fa-phone"></i> +1 800 555 0199</li>
+                    <li><i class="fa-solid fa-envelope"></i> vip@stackly.auto</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h4>Newsletter</h4>
+                <form id="footer-newsletter-form" name="newsletterForm" class="subscribe-form" novalidate>
+                    <input type="email" id="newsletter-email" name="email" placeholder="Your Email" autocomplete="email" required>
+                    <span id="newsletter-error" style="color: var(--error-color); font-size: 0.8rem; display: block; margin-top: -5px; min-height: 15px;"></span>
+                    <button type="submit" class="btn btn-glow btn-shine full-width">Subscribe</button>
+                </form>
+                <div class="media">
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sub-footer">
+        <div class="container sub-footer-content">
+            <p>&copy; 2026 Stackly. All rights reserved.</p>
+            <div class="mini-app-links">
+                <button onclick="navigate('error.html')" class="mini-btn"><i class="fa-brands fa-google-play"></i> PlayStore</button>
+                <button onclick="navigate('error.html')" class="mini-btn"><i class="fa-brands fa-apple"></i> AppStore</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="scroll-up-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script>
+        // Number Count Animation logic here if required by user content. Not specifically implemented yet as there are no counters in this design, but can be added if needed.
+
+        // Hero Vertical Slider Logic
+        const heroTrack = document.getElementById('hero-carousel-track');
+        const heroSlides = document.querySelectorAll('.about-carousel-slide');
+        let currentHeroIndex = 0;
+        
+        function moveHeroCarousel() {
+            currentHeroIndex++;
+            if(currentHeroIndex >= heroSlides.length) {
+                currentHeroIndex = 0;
+            }
+            heroTrack.style.transform = `translateY(-${currentHeroIndex * 100}%)`;
+        }
+        setInterval(moveHeroCarousel, 3000);
+
+        // Testimonial Horizontal Slider Logic
+        const testTrack = document.getElementById('testimonial-track');
+        const testSlides = document.querySelectorAll('.testimonial-slide');
+        const testPrev = document.getElementById('test-prev');
+        const testNext = document.getElementById('test-next');
+        let currentTestIndex = 0;
+
+        function updateTestimonialSlider() {
+            testTrack.style.transform = `translateX(-${currentTestIndex * 100}%)`;
+        }
+
+        // Auto-play the testimonial carousel every 3 seconds
+        function moveTestCarousel() {
+            currentTestIndex++;
+            if(currentTestIndex >= testSlides.length) currentTestIndex = 0;
+            updateTestimonialSlider();
+        }
+        let testInterval = setInterval(moveTestCarousel, 3000);
+        
+        if (testNext && testPrev) {
+            testNext.addEventListener('click', () => {
+                currentTestIndex++;
+                if(currentTestIndex >= testSlides.length) currentTestIndex = 0;
+                updateTestimonialSlider();
+            });
+
+            testPrev.addEventListener('click', () => {
+                currentTestIndex--;
+                if(currentTestIndex < 0) currentTestIndex = testSlides.length - 1;
+                updateTestimonialSlider();
+            });
+        }
+
+
+        // Global Navigation & UX Scripts
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 100);
+        });
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                const loader = document.getElementById('page-loader');
+                loader.style.display = 'none';
+            }
+        });
+
+        function updateTime() {
+            const now = new Date();
+            const timeSpan = document.getElementById('live-time');
+            if (timeSpan) {
+                timeSpan.innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const navLinks = document.getElementById('nav-links');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const dropdownHeader = document.querySelector('.dropdownHeader');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const dropdownIcon = document.querySelector('.dropdownToggle i');
+        const body = document.body;
+
+        function closeMenu() {
+            if(navLinks) navLinks.classList.remove('showMenu');
+            if(menuOverlay) menuOverlay.style.display = 'none';
+            body.classList.remove('menu-open'); 
+            if(dropdownMenu) dropdownMenu.classList.remove('showDropdown');
+            if (dropdownIcon) {
+                dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+
+        if(hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.add('showMenu');
+                menuOverlay.style.display = 'block';
+                body.classList.add('menu-open'); 
+            });
+        }
+        if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+        document.addEventListener('click', (e) => {
+            if (navLinks && navLinks.classList.contains('showMenu') && !navLinks.contains(e.target) && hamburgerBtn && !hamburgerBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        if(dropdownHeader) {
+            dropdownHeader.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownMenu.classList.toggle('showDropdown');
+                if (dropdownMenu.classList.contains('showDropdown')) {
+                    dropdownIcon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                } else {
+                    dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                }
+            });
+        }
+
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeText = document.getElementById('theme-text');
+
+        function setThemeState(isLight) {
+            if (isLight) {
+                document.body.classList.add('light-theme');
+                if(themeText) themeText.innerText = 'Dark Mode';
+                localStorage.setItem('stackly-theme', 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                if(themeText) themeText.innerText = 'Light Mode';
+                localStorage.setItem('stackly-theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            setThemeState(true);
+        }
+        
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const isLight = !document.body.classList.contains('light-theme');
+                setThemeState(isLight);
+            });
+        }
+
+        const header = document.getElementById('main-header');
+        const scrollBtn = document.getElementById('scroll-up-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                if(header) header.classList.add('sticky');
+            } else {
+                if(header) header.classList.remove('sticky');
+            }
+            if (window.scrollY > 300) {
+                if(scrollBtn) scrollBtn.classList.add('show');
+            } else {
+                if(scrollBtn) scrollBtn.classList.remove('show');
+            }
+        });
+
+        if(scrollBtn) {
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        const footerForm = document.getElementById('footer-newsletter-form');
+        const newsletterError = document.getElementById('newsletter-error');
+        const newsletterEmail = document.getElementById('newsletter-email');
+
+        if(footerForm) {
+            footerForm.addEventListener('submit', (e) => {
+                e.preventDefault(); 
+                newsletterError.innerText = '';
+                if (!newsletterEmail.value.trim() || !/\S+@\S+\.\S+/.test(newsletterEmail.value)) {
+                    newsletterError.innerText = 'Valid email is required';
+                    newsletterEmail.style.borderColor = 'var(--error-color)';
+                } else {
+                    navigate('error.html');
+                }
+            });
+        }
+
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElems.forEach(elem => fadeInObserver.observe(elem));
+    </script>
+</body>
+</html>
