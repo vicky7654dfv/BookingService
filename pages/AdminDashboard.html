@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly Elite Booking | Admin Dashboard</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/AdminDashboard.css">
+</head>
+<body>
+    <!-- Theme Initializer -->
+    <script>
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+    </script>
+
+    <div class="dash-layout">
+        
+        <!-- SIDE NAVIGATION -->
+        <aside class="dash-sidebar" id="dashSidebar">
+            <div class="sidebar-logo">
+                <a href="../index.html">
+                    <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo">
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav" id="sidebarNav">
+                <button class="nav-item active" data-target="dashboard">
+                    <i class="fa-solid fa-house"></i> <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-target="bookings">
+                    <i class="fa-solid fa-car-side"></i> <span>Bookings</span>
+                </button>
+                <button class="nav-item" data-target="driver-fleet">
+                    <i class="fa-solid fa-users"></i> <span>Driver Fleet</span>
+                </button>
+                <button class="nav-item" data-target="analytics">
+                    <i class="fa-solid fa-chart-line"></i> <span>Analytics</span>
+                </button>
+                <button class="nav-item" data-target="reports">
+                    <i class="fa-solid fa-file-invoice-dollar"></i> <span>Reports</span>
+                </button>
+                <button class="nav-item" data-target="support">
+                    <i class="fa-solid fa-headset"></i> <span>Support Messages</span>
+                </button>
+                <button class="nav-item" data-target="settings">
+                    <i class="fa-solid fa-gear"></i> <span>Settings</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-quick-stats">
+                <h4>Quick Stats</h4>
+                <div class="q-stat"><span>Active Rides</span> <strong>42</strong></div>
+                <div class="q-stat"><span>Pending</span> <strong>12</strong></div>
+                <div class="q-stat"><span>Completed</span> <strong>9,482</strong></div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT WRAPPER -->
+        <div class="dash-main">
+            
+            <!-- TOPBAR -->
+            <header class="dash-topbar">
+                <a href="../index.html" class="mobile-top-logo"><img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo"></a>
+                
+                <form class="topbar-search" onsubmit="event.preventDefault();">
+                    <label for="top-search" class="sr-only" style="display: none;">Search Drivers</label>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="top-search" name="topSearch" placeholder="Search drivers by name..." class="search-input">
+                </form>
+                
+                <div class="topbar-actions">
+                    <button class="btn-dash outline-glow exit-btn" onclick="location.href='../index.html'"><i class="fa-solid fa-right-from-bracket"></i> <span class="exit-text">Exit</span></button>
+                    <button class="icon-btn" aria-label="Notifications" onclick="location.href='error.html'">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notify-badge">3</span>
+                    </button>
+                    <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="user-profile" onclick="location.href='error.html'">
+                        <div class="user-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                        <div class="user-info">
+                            <span class="user-name">Admin Portal</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTENT SECTIONS -->
+            <main class="dash-content-area">
+                
+                <!-- 1. DASHBOARD OVERVIEW -->
+                <section id="dashboard" class="dash-section active fade-in">
+                    <div class="section-header-flex">
+                        <div class="section-text">
+                            <h2>System Overview</h2>
+                            <p class="subtitle">Platform performance and revenue analytics.</p>
+                        </div>
+                        <button class="btn-dash outline-glow" onclick="location.href='error.html'">Export Report</button>
+                    </div>
+
+                    <div class="stat-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon-wrapper text-primary">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-label">Total Users</span>
+                                <h3>12,482</h3>
+                                <p class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> +12% this month</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-wrapper text-info">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-label">Active Drivers</span>
+                                <h3>1,247</h3>
+                                <p class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> +8% this month</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-wrapper text-success">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-label">Platform Uptime</span>
+                                <h3>99.9%</h3>
+                                <p class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> +0.1% this week</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-wrapper text-warn">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-label">Monthly Revenue</span>
+                                <h3>$125,000</h3>
+                                <p class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> +15% this quarter</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid">
+                        <div class="chart-box main-chart">
+                            <div class="box-header">
+                                <h3>Revenue Trend (Last 6 Months)</h3>
+                                <button class="icon-btn" onclick="location.href='error.html'"><i class="fa-solid fa-gear"></i></button>
+                            </div>
+                            <div class="canvas-container">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-box">
+                            <div class="box-header">
+                                <h3>Service Distribution</h3>
+                                <p class="sub-header-text">Rides by category</p>
+                            </div>
+                            <div class="canvas-container ring-chart-wrapper">
+                                <canvas id="serviceRingChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. BOOKINGS -->
+                <section id="bookings" class="dash-section fade-in">
+                    <div class="section-header-flex">
+                        <div class="section-text">
+                            <h2>Active Bookings</h2>
+                            <p class="subtitle">Monitor ongoing rides and upcoming reservations.</p>
+                        </div>
+                        <button class="btn-dash" onclick="location.href='error.html'">New Booking</button>
+                    </div>
+
+                    <div class="creative-widget table-widget">
+                        <div class="list-header">
+                            <h3>Current Tracking</h3>
+                            <button class="btn-dash outline-glow" onclick="location.href='error.html'">View All Logs</button>
+                        </div>
+                        
+                        <div class="job-card-rows">
+                            <!-- Rows mapped from ATS jobs to Bookings -->
+                            <div class="job-row">
+                                <div class="job-main-info">
+                                    <h4>Ride #BK-092</h4>
+                                    <span>Airport Pickup • Premium SUV</span>
+                                </div>
+                                <div class="job-dept">John Doe (Driver)</div>
+                                <div class="job-stats"><i class="fa-regular fa-clock"></i> 15 mins away</div>
+                                <div class="job-status"><span class="badge badge-progress">In Transit</span></div>
+                                <div class="job-action"><button class="btn-dash" onclick="location.href='error.html'">Track</button></div>
+                            </div>
+                            <div class="job-row">
+                                <div class="job-main-info">
+                                    <h4>Ride #BK-104</h4>
+                                    <span>City Tour • Standard Cab</span>
+                                </div>
+                                <div class="job-dept">Alice Smith (Driver)</div>
+                                <div class="job-stats"><i class="fa-regular fa-clock"></i> Starts at 2:00 PM</div>
+                                <div class="job-status"><span class="badge badge-pending">Scheduled</span></div>
+                                <div class="job-action"><button class="btn-dash outline-glow" onclick="location.href='error.html'">Manage</button></div>
+                            </div>
+                            <div class="job-row">
+                                <div class="job-main-info">
+                                    <h4>Ride #BK-044</h4>
+                                    <span>Hotel Transfer • Minivan</span>
+                                </div>
+                                <div class="job-dept">Michael Brown (Driver)</div>
+                                <div class="job-stats"><i class="fa-regular fa-clock"></i> Arrived</div>
+                                <div class="job-status"><span class="badge badge-progress">Waiting</span></div>
+                                <div class="job-action"><button class="btn-dash" onclick="location.href='error.html'">Details</button></div>
+                            </div>
+                            <div class="job-row">
+                                <div class="job-main-info">
+                                    <h4>Ride #BK-012</h4>
+                                    <span>Business Trip • Luxury Sedan</span>
+                                </div>
+                                <div class="job-dept">Sarah Jenkins (Driver)</div>
+                                <div class="job-stats"><i class="fa-regular fa-clock"></i> Completed at 10:30 AM</div>
+                                <div class="job-status"><span class="badge badge-completed">Completed</span></div>
+                                <div class="job-action"><button class="btn-dash outline-glow" style="border-color: var(--success-color); color: var(--success-color);" onclick="location.href='error.html'">Receipt</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. DRIVER FLEET (Adaptation of Candidates) -->
+                <section id="driver-fleet" class="dash-section fade-in">
+                    <div class="section-header-flex">
+                        <div class="section-text">
+                            <h2>Fleet Management</h2>
+                            <p class="subtitle">Review driver profiles, ratings, and vehicle data.</p>
+                        </div>
+                    </div>
+
+                    <div class="candidates-layout">
+                        
+                        <!-- Sidebar List of Drivers -->
+                        <aside class="dash-inner-sidebar creative-widget">
+                            <div class="sidebar-header">
+                                <h2>Active Drivers</h2>
+                                <span class="candidate-count">142 Online</span>
+                            </div>
+
+                            <div class="sidebar-search">
+                                <label for="driver-search" class="sr-only" style="display: none;">Search drivers</label>
+                                <input type="text" id="driver-search" name="driverSearch" placeholder="Search by name or vehicle..." class="dash-input">
+                            </div>
+
+                            <div class="candidate-list" id="sidebar-driver-list">
+                                <!-- Populated by JS -->
+                            </div>
+                        </aside>
+
+                        <!-- Driver Detail Main View -->
+                        <div class="candidate-detail-main">
+                            <header class="dash-main-header">
+                                <div class="header-breadcrumb">
+                                    Fleet Pool / <strong id="bc-name">Robert Johnson</strong>
+                                </div>
+                                <div class="header-actions">
+                                    <button class="btn-dash outline-glow" onclick="location.href='error.html'">View Documents</button>
+                                    <button class="btn-dash" onclick="location.href='error.html'">Message Driver</button>
+                                </div>
+                            </header>
+
+                            <div class="org-grid">
+                                
+                                <!-- Profile Card -->
+                                <div class="org-widget profile-widget" id="active-profile-widget">
+                                    <div class="profile-header">
+                                        <div class="profile-photo-container" id="p-avatar-container">
+                                            <!-- Icon generated via JS -->
+                                        </div>
+                                        <div class="profile-title">
+                                            <h3 id="p-name">Robert Johnson</h3>
+                                            <span class="badge badge-completed" id="p-status">Active (On Trip)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-details-grid">
+                                        <div class="detail-item">
+                                            <span class="detail-label">Vehicle</span>
+                                            <span class="detail-value" id="p-vehicle">Premium SUV (Black)</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">License Plate</span>
+                                            <span class="detail-value" id="p-license">XYZ-9876</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Trips Completed</span>
+                                            <span class="detail-value" id="p-trips">1,245</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Rating</span>
+                                            <span class="detail-value" id="p-rating">4.9 / 5.0</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-tab-content">
+                                        <h4 style="margin-bottom: 10px; color: var(--text-main); font-size: 1rem;">Driver Notes</h4>
+                                        <p id="p-bio">Reliable premium driver. Frequently operates airport routes. Excellent customer reviews regarding vehicle cleanliness.</p>
+                                        <button class="btn-dash outline-glow full-width mt-3" onclick="location.href='error.html'" style="margin-top: 20px;">Access Full Record</button>
+                                    </div>
+                                </div>
+
+                                <!-- Ring Stats: Ratings & Acceptances -->
+                                <div class="org-widget ring-widget">
+                                    <div class="widget-head">
+                                        <h3>Performance Metrics</h3>
+                                        <button class="icon-btn" onclick="location.href='error.html'"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    </div>
+                                    
+                                    <div class="ring-container">
+                                        <div class="css-ring" style="--percentage: 92;" id="rating-ring">
+                                            <div class="ring-inner">
+                                                <span class="ring-value" id="rating-value">92%</span>
+                                                <span class="ring-label">Acceptance Rate</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-skills-area">
+                                        <div class="skill-item">
+                                            <div class="s-info"><span>On-Time Arrival</span><span id="stat-1-val">95%</span></div>
+                                            <div class="s-bar"><div class="s-fill bg-success" id="stat-1-fill" style="width: 95%;"></div></div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <div class="s-info"><span>Customer Satisfaction</span><span id="stat-2-val">98%</span></div>
+                                            <div class="s-bar"><div class="s-fill" id="stat-2-fill" style="width: 98%; background: var(--accent-color);"></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div> 
+
+                            <!-- Flow Graph Container matching Candidates component -->
+                            <div class="org-widget full-width-widget mt-4" style="margin-top: 25px;">
+                                <div class="widget-head">
+                                    <h3>Weekly Target Progress</h3>
+                                </div>
+                                <div class="horizontal-bars">
+                                    <div class="h-bar-item">
+                                        <div class="h-bar-info"><span>Ride Completion Goal (50 Trips)</span><span>80%</span></div>
+                                        <div class="h-bar-track"><div class="h-bar-fill" style="width: 80%; background: var(--accent-color);"></div></div>
+                                    </div>
+                                    <div class="h-bar-item mt-3">
+                                        <div class="h-bar-info"><span>Revenue Goal ($1,200)</span><span>65%</span></div>
+                                        <div class="h-bar-track"><div class="h-bar-fill bg-success" style="width: 65%;"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. ANALYTICS (Timelines) -->
+                <section id="analytics" class="dash-section fade-in">
+                    <div class="section-header-flex">
+                        <div class="section-text">
+                            <h2>Platform Analytics</h2>
+                            <p class="subtitle">Live tracking and fulfillment targets.</p>
+                        </div>
+                        <button class="btn-dash" onclick="location.href='error.html'">Download Data</button>
+                    </div>
+
+                    <div class="charts-grid custom-bars-grid">
+                        <div class="chart-box timeline-box">
+                            <div class="box-header">
+                                <h3>Live Dispatch Activity</h3>
+                                <button class="icon-btn" onclick="location.href='error.html'"><i class="fa-solid fa-gear"></i></button>
+                            </div>
+                            <div class="timeline-widget">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-success"></div>
+                                    <div class="timeline-content">
+                                        <p class="timeline-time">2 Minutes Ago</p>
+                                        <p class="timeline-text"><strong>Driver Alice</strong> completed drop-off for <span>Ride BK-104</span>.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-info"></div>
+                                    <div class="timeline-content">
+                                        <p class="timeline-time">10 Minutes Ago</p>
+                                        <p class="timeline-text">New high-priority booking created by <strong>VIP Client</strong>.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-warn"></div>
+                                    <div class="timeline-content">
+                                        <p class="timeline-time">45 Minutes Ago</p>
+                                        <p class="timeline-text">Driver cancellation alert on <span>Ride BK-092</span>. Reassigned automatically.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot dot-primary"></div>
+                                    <div class="timeline-content">
+                                        <p class="timeline-time">3 Hours Ago</p>
+                                        <p class="timeline-text">System maintenance backup completed successfully.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="chart-box alert-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="box-header">
+                                    <h3>Regional Demand Fulfillment</h3>
+                                    <button class="icon-btn" onclick="location.href='error.html'"><i class="fa-solid fa-gear"></i></button>
+                                </div>
+                                <div class="horizontal-bars">
+                                    <div class="h-bar-item">
+                                        <div class="h-bar-info"><span>Downtown Area</span><span>92%</span></div>
+                                        <div class="h-bar-track"><div class="h-bar-fill" style="width: 92%; background: var(--accent-color);"></div></div>
+                                    </div>
+                                    <div class="h-bar-item">
+                                        <div class="h-bar-info"><span>Airport Routes</span><span>85%</span></div>
+                                        <div class="h-bar-track"><div class="h-bar-fill bg-success" style="width: 85%;"></div></div>
+                                    </div>
+                                    <div class="h-bar-item">
+                                        <div class="h-bar-info"><span>Suburbs</span><span>45%</span></div>
+                                        <div class="h-bar-track"><div class="h-bar-fill bg-warn" style="width: 45%;"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="system-status-wrapper mt-4">
+                                <ul class="system-list">
+                                    <li><span class="status-indicator ok"></span> Gateway Processing Active</li>
+                                    <li><span class="status-indicator ok"></span> GPS Tracking Online</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. REPORTS -->
+                <section id="reports" class="dash-section fade-in">
+                    <div class="section-header-flex">
+                        <div class="section-text">
+                            <h2>Document Management</h2>
+                            <p class="subtitle">Access driver verification forms and tax invoices.</p>
+                        </div>
+                        <button class="btn-dash" id="header-upload-btn"><i class="fa-solid fa-upload" style="margin-right: 8px;"></i> Upload File</button>
+                    </div>
+
+                    <div class="creative-widget p-4" style="padding: 30px;">
+                        <div class="upload-zone text-center" id="report-upload-zone" style="border: 2px dashed var(--border-light); padding: 50px; border-radius: 12px; margin-bottom: 30px;">
+                            <i class="fa-solid fa-cloud-arrow-up text-accent" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 15px;"></i>
+                            <h3>Upload Driver Documents</h3>
+                            <p style="margin-bottom: 20px;">Select PDF or DOCX ID proofs or Insurance documentation.</p>
+                            
+                            <input type="file" id="report-file-input" accept=".pdf,.docx" style="display: none;">
+                            <button class="btn-dash outline-glow mt-3" id="report-select-btn">Select Files</button>
+                            
+                            <div id="report-file-name" style="font-size: 0.9rem; color: var(--text-muted); display: none; margin-top: 15px;">No file selected</div>
+                            <div id="report-file-error" style="color: var(--danger-color); font-size: 0.85rem; display: none; margin-top: 10px;">Invalid file type. Please upload .pdf or .docx only.</div>
+                        </div>
+
+                        <div class="list-header" style="border-bottom: 1px solid var(--border-light); padding-bottom: 15px; margin-bottom: 20px;">
+                            <h3>Recent Exports</h3>
+                        </div>
+                        <div class="system-list">
+                            <li style="display: flex; justify-content: space-between; align-items: center;">
+                                <div><i class="fa-solid fa-file-excel" style="color: #10b981; margin-right: 10px;"></i> Monthly_Revenue_Q3.csv</div>
+                                <button class="btn-dash outline-glow" style="padding: 5px 15px; font-size: 0.8rem;" onclick="location.href='error.html'">Download</button>
+                            </li>
+                            <li style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                                <div class="text2"><i class="fa-solid fa-file-pdf" style="color: #ef4444; margin-right: 10px;"></i> Driver_Compliance_Report.pdf</div>
+                                <button class="btn-dash outline-glow" style="padding: 5px 15px; font-size: 0.8rem;" onclick="location.href='error.html'">Download</button>
+                            </li>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. SUPPORT MESSAGES -->
+                <section id="support" class="dash-section fade-in">
+                    <div class="section-header-flex">
+                        <div class="section-text">
+                            <h2>Support & Inquiries</h2>
+                        </div>
+                        <button class="btn-dash" onclick="location.href='error.html'">Compose Message</button>
+                    </div>
+
+                    <div class="messages-layout">
+                        <div class="message-list creative-widget" id="message-list-container">
+                            <!-- Populated via JS -->
+                        </div>
+        
+                        <div class="message-view creative-widget">
+                            <div class="msg-view-header">
+                                <div>
+                                    <h3 id="view-msg-name">Loading...</h3>
+                                    <span id="view-msg-email">...</span>
+                                </div>
+                                <div class="msg-actions">
+                                    <span id="view-msg-date" class="msg-date-display">...</span>
+                                    <button class="icon-btn" onclick="location.href='error.html'" aria-label="Settings" style="margin-left: 15px;"><i class="fa-solid fa-gear"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="msg-view-body">
+                                <h4 id="view-msg-subject">Subject: ...</h4>
+                                <div id="view-msg-body" class="msg-body-content"></div>
+                            </div>
+                            
+                            <form action="./error.html" method="GET" class="msg-reply-box">
+                                <label for="reply-message" class="reply-label">Your Reply</label>
+                                <textarea id="reply-message" name="reply-message" placeholder="Type your response to the user here..." class="dash-input" required></textarea>
+                                <button type="submit" class="btn-dash send-btn"><i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i> Send Reply</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. SETTINGS -->
+                <section id="settings" class="dash-section fade-in">
+                    <form id="settings-form" class="section-header-flex" style="margin-bottom: 0;">
+                        <div class="section-text">
+                            <h2>Platform Settings</h2>
+                            <p class="subtitle">Manage dashboard preferences, notifications, and security options.</p>
+                        </div>
+                        <button type="submit" class="btn-dash outline-glow">Save Changes</button>
+                    </form>
+
+                    <div class="creative-widget" style="padding: 24px; margin-top: 30px;">
+                        <h3 style="margin-bottom: 25px;">General Preferences</h3>
+                        <div style="display: flex; flex-direction: column; gap: 20px; max-width: 600px;">
+                            <div class="input-group">
+                                <label for="adminEmail" style="display:block; margin-bottom:8px; font-weight:500; font-size:0.9rem;">Admin Contact Email</label>
+                                <input type="email" value="admin@stackly.com" class="dash-input" name="adminEmail" id="adminEmail" required>
+                                <span id="settings-email-error" style="color: var(--danger-color); font-size: 0.8rem; display: none; margin-top: 5px;">Please enter a valid email address.</span>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="timezone" style="display:block; margin-bottom:8px; font-weight:500; font-size:0.9rem;">System Timezone</label>
+                                <select class="dash-input" name="timezone" id="timezone">
+                                    <option>UTC-08:00 Pacific Time</option>
+                                    <option>UTC-05:00 Eastern Time</option>
+                                    <option selected>UTC+00:00 London</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group" style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-light); padding-top: 20px; margin-top: 10px;">
+                                <div>
+                                    <h4 style="margin-bottom: 5px;">Enable Driver Approvals</h4>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Require manual approval for new drivers attempting to join the fleet.</p>
+                                </div>
+                                <button type="button" class="btn-dash" style="background: var(--success-color);" onclick="location.href='error.html'">Enabled</button>
+                            </div>
+
+                            <div class="input-group" style="border-top: 1px solid var(--border-light); padding-top: 20px; margin-top: 10px;">
+                                <h4 style="margin-bottom: 15px;">Security Actions</h4>
+                                <button type="button" class="btn-dash outline-glow" onclick="location.href='error.html'"><i class="fa-solid fa-key" style="margin-right:8px;"></i> Change Password</button>
+                                <button type="button" class="btn-dash outline-glow" style="border-color: var(--danger-color); color: var(--danger-color); margin-left: 10px;" onclick="location.href='error.html'"><i class="fa-solid fa-shield" style="margin-right:8px;"></i> Two-Factor Auth (2FA)</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Theme Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const body = document.body;
+        
+        function updateThemeIcon() {
+            if (body.classList.contains('light-theme')) {
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                themeToggleBtn.innerHTML = '<i class="fa-regular fa-sun"></i>';
+            }
+        }
+        updateThemeIcon();
+        
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            if(body.classList.contains('light-theme')){
+                localStorage.setItem('stackly-theme', 'light');
+            } else {
+                localStorage.setItem('stackly-theme', 'dark');
+            }
+            updateThemeIcon();
+            if(typeof updateChartColors === 'function') updateChartColors(); 
+        });
+
+        // 2. Tab Routing via Sidebar
+        const navItems = document.querySelectorAll('.nav-item[data-target]');
+        const dashSections = document.querySelectorAll('.dash-section');
+
+        navItems.forEach(btn => {
+            btn.addEventListener('click', () => {
+                navItems.forEach(b => b.classList.remove('active'));
+                dashSections.forEach(s => s.classList.remove('active'));
+                
+                btn.classList.add('active');
+                const targetId = btn.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // 3. Driver Data & Rendering
+        const drivers = [
+            { id: 1, name: "Robert Johnson", vehicle: "Premium SUV (Black)", license: "XYZ-9876", trips: "1,245", rating: "4.9 / 5.0", status: "Active (On Trip)", icon: "fa-car", color1: "#6366F1", color2: "#4f46e5", bio: "Reliable premium driver. Frequently operates airport routes.", acceptRate: 92, onTime: 95, cSat: 98, badge: "badge-completed" },
+            { id: 2, name: "Sarah Jenkins", vehicle: "Standard Sedan (White)", license: "ABC-1234", trips: "840", rating: "4.7 / 5.0", status: "Available", icon: "fa-car-side", color1: "#10b981", color2: "#059669", bio: "Excellent navigator in downtown traffic patterns.", acceptRate: 88, onTime: 90, cSat: 95, badge: "badge-progress" },
+            { id: 3, name: "Michael Brown", vehicle: "Minivan (Silver)", license: "LMN-4321", trips: "410", rating: "4.5 / 5.0", status: "Offline", icon: "fa-van-shuttle", color1: "#f59e0b", color2: "#d97706", bio: "Specializes in group hotel transfers.", acceptRate: 75, onTime: 85, cSat: 90, badge: "badge-pending" }
+        ];
+
+        const sidebarDriverList = document.getElementById('sidebar-driver-list');
+        
+        function renderDriverSidebar(filterText = '') {
+            if(!sidebarDriverList) return;
+            sidebarDriverList.innerHTML = '';
+            
+            const filtered = drivers.filter(d => 
+                d.name.toLowerCase().includes(filterText.toLowerCase()) || 
+                d.vehicle.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            if (filtered.length === 0) {
+                sidebarDriverList.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted); font-size: 0.95rem;">No matches available</div>';
+                return;
+            }
+
+            filtered.forEach(d => {
+                const item = document.createElement('div');
+                item.className = `candidate-item ${d.id === (filtered[0]?.id || 1) ? 'active-candidate' : ''}`; 
+                item.innerHTML = `
+                    <div class="c-avatar-icon" style="background: linear-gradient(135deg, ${d.color1}, ${d.color2});">
+                        <i class="fa-solid ${d.icon}"></i>
+                    </div>
+                    <div class="c-info">
+                        <h4>${d.name}</h4>
+                        <span>${d.status}</span>
+                    </div>
+                `;
+                item.onclick = () => {
+                    document.querySelectorAll('#sidebar-driver-list .candidate-item').forEach(el => el.classList.remove('active-candidate'));
+                    item.classList.add('active-candidate');
+                    switchDriverProfile(d);
+                };
+                sidebarDriverList.appendChild(item);
+            });
+            
+            // Auto-select first matching profile
+            if (filtered.length > 0) {
+                switchDriverProfile(filtered[0]);
+            }
+        }
+
+        // Search Handlers
+        const driverSearch = document.getElementById('driver-search');
+        const topSearch = document.getElementById('top-search');
+
+        if (driverSearch) {
+            driverSearch.addEventListener('input', (e) => {
+                renderDriverSidebar(e.target.value);
+            });
+        }
+
+        if (topSearch) {
+            topSearch.addEventListener('input', (e) => {
+                const val = e.target.value;
+                if (val.trim().length > 0) {
+                    const dfBtn = document.querySelector('.nav-item[data-target="driver-fleet"]');
+                    if (dfBtn && !dfBtn.classList.contains('active')) {
+                        dfBtn.click();
+                    }
+                }
+                if (driverSearch) driverSearch.value = val;
+                renderDriverSidebar(val);
+            });
+        }
+
+        function switchDriverProfile(d) {
+            document.getElementById('bc-name').textContent = d.name;
+            const avatarContainer = document.getElementById('p-avatar-container');
+            avatarContainer.style.background = `linear-gradient(135deg, ${d.color1}, ${d.color2})`;
+            avatarContainer.innerHTML = `<i class="fa-solid ${d.icon}" style="font-size: 2.5rem; color: #fff;"></i>`;
+            
+            document.getElementById('p-name').textContent = d.name;
+            document.getElementById('p-vehicle').textContent = d.vehicle;
+            document.getElementById('p-license').textContent = d.license;
+            document.getElementById('p-trips').textContent = d.trips;
+            document.getElementById('p-rating').textContent = d.rating;
+            document.getElementById('p-bio').textContent = d.bio;
+            
+            const statusBadge = document.getElementById('p-status');
+            statusBadge.textContent = d.status;
+            statusBadge.className = 'badge ' + d.badge;
+
+            document.getElementById('rating-value').textContent = `${d.acceptRate}%`;
+            document.getElementById('rating-ring').style.setProperty('--percentage', d.acceptRate);
+            document.getElementById('stat-1-val').textContent = `${d.onTime}%`;
+            document.getElementById('stat-1-fill').style.width = `${d.onTime}%`;
+            document.getElementById('stat-2-val').textContent = `${d.cSat}%`;
+            document.getElementById('stat-2-fill').style.width = `${d.cSat}%`;
+        }
+
+        // 4. Messages Rendering
+        const messagesData = [
+            { 
+                id: 1, name: "Alexander Pierce", email: "alex.p@mail.com", date: "10:45 AM", 
+                subject: "Lost Item in Ride BK-092", unread: true, 
+                body: "<p>Hello Support,</p><p>I believe I left my black leather wallet in the backseat during my airport transfer this morning.</p><p>Can you please contact the driver and let me know if it was found?</p>" 
+            },
+            { 
+                id: 2, name: "Driver Support (Alice)", email: "alice.driver@stackly.com", date: "Yesterday", 
+                subject: "Vehicle Maintenance Update", unread: false, 
+                body: "<p>Hi Admin,</p><p>Just submitting notice that my Standard Cab will be out for scheduled oil changes tomorrow. I'll be offline from 9 AM to 1 PM.</p>" 
+            }
+        ];
+
+        function renderInbox() {
+            const container = document.getElementById('message-list-container');
+            if(!container) return;
+            container.innerHTML = '';
+            messagesData.forEach(msg => {
+                const div = document.createElement('div');
+                div.className = `msg-item ${msg.unread ? 'unread' : ''}`;
+                div.innerHTML = `<div class="msg-header"><h4>${msg.name}</h4><span>${msg.date}</span></div><p class="msg-subject">${msg.subject}</p><p class="msg-preview">Click to view full message...</p>`;
+                div.onclick = () => {
+                    document.querySelectorAll('.msg-item').forEach(el => el.classList.remove('active-msg'));
+                    div.classList.add('active-msg');
+                    div.classList.remove('unread');
+                    
+                    document.getElementById('view-msg-name').textContent = msg.name;
+                    document.getElementById('view-msg-email').textContent = msg.email;
+                    document.getElementById('view-msg-date').textContent = msg.date;
+                    document.getElementById('view-msg-subject').textContent = `Subject: ${msg.subject}`;
+                    document.getElementById('view-msg-body').innerHTML = msg.body;
+                };
+                container.appendChild(div);
+            });
+            if(container.firstChild) container.firstChild.click();
+        }
+
+        // 5. Chart JS Implementations
+        let revenueChart, serviceRingChart;
+
+        function initCharts() {
+            const ctxRev = document.getElementById('revenueChart');
+            const ctxRing = document.getElementById('serviceRingChart');
+            if(!ctxRev || !ctxRing) return;
+
+            const isLight = document.body.classList.contains('light-theme');
+            const textColor = isLight ? '#475569' : '#94a3b8';
+            const gridColor = isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)';
+            const accentHex = '#6366F1';
+
+            // Base gradient for line chart
+            let gradient = ctxRev.getContext('2d').createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(99, 102, 241, 0.4)');   
+            gradient.addColorStop(1, 'rgba(99, 102, 241, 0.0)');
+
+            revenueChart = new Chart(ctxRev.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: [65000, 78000, 85000, 110000, 95000, 125000],
+                        borderColor: accentHex,
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: accentHex,
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { legend: { display: false } }, 
+                    scales: { 
+                        x: { ticks: { color: textColor }, grid: { display: false } }, 
+                        y: { ticks: { color: textColor }, grid: { color: gridColor } } 
+                    } 
+                }
+            });
+
+            serviceRingChart = new Chart(ctxRing.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Standard Cab', 'Premium SUV', 'Minivan', 'Helicopter'],
+                    datasets: [{
+                        data: [45, 35, 15, 5],
+                        backgroundColor: [accentHex, '#38bdf8', '#10b981', '#f59e0b'],
+                        borderWidth: 0,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '75%',
+                    plugins: { legend: { position: 'right', labels: { color: textColor, font: { family: "'Outfit'" }, padding: 20 } } }
+                }
+            });
+        }
+
+        function updateChartColors() {
+            if(!revenueChart || !serviceRingChart) return;
+            const isLight = document.body.classList.contains('light-theme');
+            const textColor = isLight ? '#475569' : '#94a3b8';
+            const gridColor = isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)';
+
+            revenueChart.options.scales.x.ticks.color = textColor;
+            revenueChart.options.scales.y.ticks.color = textColor;
+            revenueChart.options.scales.y.grid.color = gridColor;
+            revenueChart.update();
+
+            serviceRingChart.options.plugins.legend.labels.color = textColor;
+            serviceRingChart.update();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDriverSidebar();
+            renderInbox();
+            initCharts();
+            switchDriverProfile(drivers[0]); // Explicitly initialize the first driver data
+        });
+
+        // 5. Settings Validation
+        const settingsForm = document.getElementById('settings-form');
+        const settingsEmailInput = document.getElementById('adminEmail');
+        const settingsEmailError = document.getElementById('settings-email-error');
+
+        if (settingsForm) {
+            settingsForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                
+                const emailValue = settingsEmailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                let isValid = true;
+
+                if (!emailRegex.test(emailValue)) {
+                    settingsEmailError.style.display = 'block';
+                    settingsEmailInput.style.borderColor = 'var(--danger-color)';
+                    isValid = false;
+                } else {
+                    settingsEmailError.style.display = 'none';
+                    settingsEmailInput.style.borderColor = '';
+                }
+
+                if (isValid) {
+                    location.href = 'error.html';
+                }
+            });
+            
+            settingsEmailInput.addEventListener('input', function() {
+                settingsEmailError.style.display = 'none';
+                settingsEmailInput.style.borderColor = '';
+            });
+        }
+
+        // 6. Report Upload Validation
+        const reportFileInput = document.getElementById('report-file-input');
+        const reportSelectBtn = document.getElementById('report-select-btn');
+        const headerUploadBtn = document.getElementById('header-upload-btn');
+        const reportFileName = document.getElementById('report-file-name');
+        const reportFileError = document.getElementById('report-file-error');
+
+        if(reportSelectBtn && reportFileInput && headerUploadBtn) {
+            reportSelectBtn.addEventListener('click', () => {
+                reportFileInput.click();
+            });
+
+            reportFileInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    reportFileName.style.display = 'block';
+                    reportFileName.textContent = 'Selected: ' + file.name;
+                    reportFileError.style.display = 'none';
+                } else {
+                    reportFileName.style.display = 'none';
+                }
+            });
+
+            headerUploadBtn.addEventListener('click', () => {
+                const file = reportFileInput.files[0];
+                if (!file) {
+                    reportFileError.textContent = 'Please select a file to upload first.';
+                    reportFileError.style.display = 'block';
+                    return;
+                }
+                const ext = file.name.split('.').pop().toLowerCase();
+                if (ext === 'pdf' || ext === 'docx') {
+                    location.href = 'error.html';
+                } else {
+                    reportFileError.textContent = 'Invalid file type. Please upload .pdf or .docx only.';
+                    reportFileError.style.display = 'block';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
