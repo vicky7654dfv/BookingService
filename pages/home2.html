@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly | Elite Booking Services - Home 2</title>
+    <meta name="description" content="Stackly Home 2 - Discover elite booking solutions for business travel, reserve rides, and explore our social media reach.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%2306B6D4' d='M256 0C167.6 0 96 71.6 96 160c0 102.6 137.9 330.1 148.1 346.3c3.5 5.6 9.6 8.9 16.1 8.9s12.6-3.3 16.1-8.9C286.3 490.1 416 262.6 416 160C416 71.6 344.4 0 256 0zM256 240c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z'/></svg>">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/home2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Accessibility utility class */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Theme & Loader Script to run immediately -->
+    <script>
+        if (localStorage.getItem('stackly-theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+        function navigate(path) {
+            if (!path || path === 'javascript:void(0)') return;
+            const loader = document.getElementById('page-loader');
+            if (loader) {
+                loader.style.display = 'flex';
+                setTimeout(() => { loader.style.opacity = '1'; }, 10);
+                setTimeout(() => { window.location.assign(path); }, 400);
+            } else {
+                window.location.assign(path);
+            }
+        }
+    </script>
+
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="loader-img">
+            <p>Loading Experience...</p>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content container">
+            <div class="top-bar-left">
+                <span><i class="fa-solid fa-clock"></i> Available 24*7</span>
+                <span><i class="fa-solid fa-envelope"></i> support@stackly.com</span>
+                <span><i class="fa-solid fa-phone"></i> +1 800 555 0199</span>
+            </div>
+            <div class="top-bar-right">
+                <span id="live-time"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="headerWrap" id="main-header">
+        <div class="imgWrap">
+            <a href="../index.html">
+                <img src="../assets/Home1/Header/logo.webp" alt="Stackly Logo" class="site-logo">
+            </a>
+        </div>
+        <div class="hamburger" id="hamburger-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="linksWrap" id="nav-links">
+            <div class="topCloseBtn" id="close-btn">
+                <i class="fa-solid fa-times"></i>
+            </div>
+            <ul>
+                <li class="dropdown" id="home-dropdown">
+                    <div class="dropdownHeader">
+                        <a href="javascript:void(0)" class="homePageLink" id="home-nav-link">Home</a>
+                        <button class="dropdownToggle" aria-label="Toggle dropdown" id="dropdown-toggle-btn">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdownMenu" id="dropdown-menu">
+                        <li><a href="../index.html">Home 1</a></li>
+                        <li><a href="home2.html">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="AdminDashboard.html">DashBoard</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li class="theme-toggle-li">
+                    <button id="theme-toggle-btn" class="nav-link-btn" aria-label="Toggle Theme">
+                        <span id="theme-text">Light Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="menuOverlay" id="menu-overlay" onclick="closeMenu()"></div>
+    </header>
+
+    <main>
+        <!-- ==========================================
+             SECTION 1: HERO (Fixed Video + Carousel)
+             ========================================== -->
+        <section class="h2-s1-hero" aria-label="Hero Carousel">
+            <div class="h2-s1-video-bg">
+                <video autoplay muted loop playsinline>
+                    <source src="../assets/Home2/home2Hero.mp4" type="video/mp4">
+                </video>
+                <div class="h2-s1-overlay"></div>
+            </div>
+
+            <!-- Carousel Tracking -->
+            <div class="h2-s1-carousel-container">
+                <div class="h2-s1-track" id="h2-s1-track">
+                    
+                    <!-- Slide 1 -->
+                    <div class="h2-s1-slide">
+                        <h1>Elite Business Travels</h1>
+                        <h3>First Class All The Way</h3>
+                        <p>We redefine business commuting. Stackly's exclusive fleet ensures you arrive at every corporate meeting on time, relaxed, and with an undeniable air of professional prestige. Your journey matters as much as your destination.</p>
+                        <div class="h2-btn-group">
+                            <button onclick="navigate('error.html')" class="btn btn-glow">Reserve Now</button>
+                            <button onclick="navigate('error.html')" class="btn btn-outline">Our Fleet</button>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="h2-s1-slide">
+                        <h1>Seamless Global Reach</h1>
+                        <h3>Any City, Any Time</h3>
+                        <p>Experience the ultimate luxury of consistency. Whether you are landing in New York, London, or Tokyo, Stackly delivers the exact same rigorous standard of chauffeur-driven excellence globally.</p>
+                        <div class="h2-btn-group">
+                            <button onclick="navigate('error.html')" class="btn btn-glow">Global Services</button>
+                            <button onclick="navigate('error.html')" class="btn btn-outline">Contact Elite</button>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="h2-s1-slide">
+                        <h1>Vetted Professionals</h1>
+                        <h3>Safety & Precision</h3>
+                        <p>Every Stackly chauffeur undergoes rigorous training in defensive driving, route optimization, and executive etiquette. Rest assured, you are in the hands of the industry's most trusted professionals.</p>
+                        <div class="h2-btn-group">
+                            <button onclick="navigate('error.html')" class="btn btn-glow">Meet the Team</button>
+                            <button onclick="navigate('error.html')" class="btn btn-outline">Safety Standards</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Carousel Controls -->
+                <div class="h2-s1-dots">
+                    <button class="h2-dot active" data-slide="0" aria-label="Slide 1"></button>
+                    <button class="h2-dot" data-slide="1" aria-label="Slide 2"></button>
+                    <button class="h2-dot" data-slide="2" aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             SECTION 2: DIAGONAL TEXTS
+             ========================================== -->
+        <section class="h2-s2-diagonal fade-in">
+            <div class="container h2-section-head">
+                <h1>Beyond A Simple Commute</h1>
+                <p>We are a visionary movement shifting the geography of modern travel. Every single ride is engineered with absolute mathematical precision and executed with uncompromised luxury, crossing paths with the world’s elite.</p>
+            </div>
+            
+            <div class="h2-s2-cross-container">
+                <!-- Main Diagonal (Text scrolls Left to Right) -->
+                <div class="h2-diag-line h2-main-diag">
+                    <div class="h2-marquee scroll-ltr">
+                        <span>PRECISION • LUXURY • VELOCITY • COMMAND • EFFICIENCY • COMFORT • SAFETY • INFLUENCE •&nbsp;</span>
+                        <span>PRECISION • LUXURY • VELOCITY • COMMAND • EFFICIENCY • COMFORT • SAFETY • INFLUENCE •&nbsp;</span>
+                    </div>
+                </div>
+                <!-- Second Diagonal (Text scrolls Right to Left) -->
+                <div class="h2-diag-line h2-sub-diag">
+                    <div class="h2-marquee scroll-rtl">
+                        <span>PRESTIGE • GLOBAL REACH • SEAMLESS • EXECUTIVE • DISCRETION • TRUST • ELITE • ALWAYS •&nbsp;</span>
+                        <span>PRESTIGE • GLOBAL REACH • SEAMLESS • EXECUTIVE • DISCRETION • TRUST • ELITE • ALWAYS •&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             SECTION 3: SOCIAL MEDIA & ADS (Fixed Video)
+             ========================================== -->
+        <section class="h2-s3-social fade-in">
+            <!-- Fixed Video Background -->
+            <div class="h2-s3-video-bg">
+                <video autoplay muted loop playsinline>
+                    <source src="../assets/SignUp/signupBg.mp4" type="video/mp4">
+                </video>
+                <div class="h2-s3-overlay"></div>
+            </div>
+
+            <div class="container h2-s3-content fade-in">
+                <!-- Section Intro -->
+                <div class="h2-section-head text-glow" style="margin-bottom: 50px;">
+                    <h1 style="font-weight: 800;">Our Digital Footprint & Outreach</h1>
+                    <p style="font-weight: 600;">Stackly doesn't just dominate the physical roads; we command the digital landscape. Our comprehensive social media campaigns and strategic ad placements keep our brand at the forefront of the elite travel conversation globally, reaching millions of discerning professionals every week.</p>
+                </div>
+
+                <div class="h2-s3-box fade-in">
+                    <!-- Left Column: Details -->
+                    <div class="h2-s3-new-left">
+                        <h1 style="font-weight: 800;">Social Media & Advertising</h1>
+                        <h3 style="font-weight: 700;">Connecting with the World's Elite</h3>
+                        <p class="h2-colored-p1" style="font-weight: 600;">Across platforms, Stackly cultivates a community of leaders, visionaries, and executives who understand the value of absolute reliability. We share industry insights, behind-the-scenes glimpses of our fleet, and exclusive partnership announcements.</p>
+                        <p class="h2-colored-p2" style="font-weight: 600;">Our targeted advertising campaigns span premium digital networks, ensuring our story reaches those who demand nothing but the absolute best in their daily transit.</p>
+                        <div class="h2-btn-group" style="margin-top: 30px; justify-content: flex-start;">
+                            <button onclick="navigate('error.html')" class="btn btn-glow" style="font-weight: 700;">Follow Us</button>
+                            <button onclick="navigate('error.html')" class="btn btn-outline btn-light-outline" style="font-weight: 700;">View Campaigns</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Metrics -->
+                    <div class="h2-s3-new-right">
+                        <div class="h2-s3-metrics fade-in" style="margin: 0;">
+                            <div class="h2-metric">
+                                <i class="fa-brands fa-linkedin"></i>
+                                <div>
+                                    <span class="count-num" data-target="150" style="font-weight: 900;">0</span><span style="font-weight: 900; font-size: 2.8rem; color: var(--h2-text-main);">k+</span>
+                                </div>
+                                <small style="font-weight: 700;">LinkedIn Followers</small>
+                            </div>
+                            <div class="h2-metric">
+                                <i class="fa-brands fa-twitter"></i>
+                                <div>
+                                    <span class="count-num" data-target="320" style="font-weight: 900;">0</span><span style="font-weight: 900; font-size: 2.8rem; color: var(--h2-text-main);">k+</span>
+                                </div>
+                                <small style="font-weight: 700;">Twitter Community</small>
+                            </div>
+                            <div class="h2-metric">
+                                <i class="fa-solid fa-rectangle-ad"></i>
+                                <div>
+                                    <span class="count-num" data-target="45" style="font-weight: 900;">0</span><span style="font-weight: 900; font-size: 2.8rem; color: var(--h2-text-main);">m+</span>
+                                </div>
+                                <small style="font-weight: 700;">Monthly Ad Impressions</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             SECTION 4: UBER RESERVE
+             ========================================== -->
+        <section class="h2-s4-reserve fade-in">
+            <div class="container">
+                <div class="h2-section-head">
+                    <h1>Plan Your Journey Ahead</h1>
+                    <p>Timing is everything. With Stackly's advanced reservation system, modeled for ultimate reliability, you can schedule your executive transit well in advance. Secure your preferred premium vehicle, guarantee availability during peak hours, and lock in your rate seamlessly.</p>
+                </div>
+
+                <div class="h2-s4-grid">
+                    <!-- Text/Form side -->
+                    <div class="h2-s4-form-col fade-in">
+                        <h2>Plan for later</h2>
+                        <h3>Get your ride right with Stackly Reserve</h3>
+
+                        <fieldset class="h2-reserve-widget">
+                            <legend class="h2-widget-label">Choose date and time</legend>
+                            <div class="h2-input-row">
+                                <div class="h2-input-group">
+                                    <label for="reserve-date"><small>Date</small></label>
+                                    <input type="date" id="reserve-date" name="reserve-date" class="h2-form-control" autocomplete="off" required>
+                                </div>
+                                <div class="h2-input-group">
+                                    <label for="reserve-time"><small>Time</small></label>
+                                    <input type="time" id="reserve-time" name="reserve-time" class="h2-form-control" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <span id="reserve-error" class="h2-validation-msg" role="alert"></span>
+                            <button id="reserve-btn" class="btn btn-glow full-width disabled" disabled>Next</button>
+                        </fieldset>
+
+                        <div class="h2-benefits-section">
+                            <h4>Benefits</h4>
+                            <ul>
+                                <li>
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                    <div>Choose your exact pickup time up to 90 days in advance.</div>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-hourglass-half"></i>
+                                    <div>Extra wait time included to meet your ride.</div>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-xmark"></i>
+                                    <div>Cancel at no charge up to 60 minutes in advance.</div>
+                                </li>
+                            </ul>
+                            <button onclick="navigate('error.html')" class="h2-text-link">See terms <i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Image side -->
+                    <div class="h2-s4-img-col fade-in">
+                        <div class="h2-s4-img-wrap hover-scale-fx">
+                            <img src="../assets/Home2/111.webp" alt="Stackly Premium Reserve">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             SECTION 5: BUSINESS SOLUTIONS
+             ========================================== -->
+        <section class="h2-s5-business fade-in">
+            <div class="container">
+                <div class="h2-section-head">
+                    <h1>Enterprise Grade Logistics</h1>
+                    <p>Stackly goes far beyond individual commutes. We offer comprehensively managed transport solutions for entire corporations. From managing daily employee transit budgets to handling last-mile sensitive document delivery, we ensure your business never stops moving.</p>
+                </div>
+
+                <div class="h2-s5-grid">
+                    <!-- Image Stack Side -->
+                    <div class="h2-s5-img-col fade-in">
+                        <div class="h2-stacked-images">
+                            <img src="../assets/Home2/222.webp" alt="Business Travel Solution" class="h2-stack-1 hover-fx-1">
+                            <img src="../assets/Home2/333.webp" alt="Business Deliveries" class="h2-stack-2 hover-fx-2">
+                        </div>
+                    </div>
+
+                    <!-- Text/List Side -->
+                    <div class="h2-s5-text-col fade-in">
+                        <h2>Looking for business solutions?</h2>
+                        <p>Get information about how companies leverage Stackly for Business:</p>
+
+                        <ul class="h2-business-list fade-in">
+                            <li><i class="fa-solid fa-briefcase"></i> <span>Business travel</span></li>
+                            <li><i class="fa-solid fa-hand-holding-heart"></i> <span>Courtesy rides</span></li>
+                            <li><i class="fa-solid fa-utensils"></i> <span>Meal programs</span></li>
+                            <li><i class="fa-solid fa-box"></i> <span>Item delivery</span></li>
+                        </ul>
+
+                        <div class="h2-btn-group form-actions">
+                            <button onclick="navigate('error.html')" class="btn btn-glow">Get started</button>
+                            <button onclick="navigate('error.html')" class="btn btn-outline">Check out our solutions</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         FOOTER (Synced with index.html)
+         ========================================== -->
+    <footer>
+        <div class="footerWrap container">
+            <div class="box">
+                <div class="logoContainer">
+                    <img src="../assets/Home1/Header/logo.webp" class="footer-logo site-logo" alt="Stackly Logo">
+                </div>
+                <p class="footer-desc">
+                    Defining the future of elite booking and commute. Precision, safety, and unparalleled expertise. Driven by innovation, we deliver seamless journeys built on trust, performance, and excellence.
+                </p>
+            </div>
+            <div class="box">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('about.html')" class="nav-link-btn">About Us</button></li>
+                    <li><button onclick="navigate('AdminDashboard.html')" class="nav-link-btn">Dashboard</button></li>
+                    <li><button onclick="navigate('signup.html')" class="nav-link-btn">Sign Up</button></li>
+                    <li><button onclick="navigate('login.html')" class="nav-link-btn">Login</button></li>
+                </ul>
+            </div>
+            <div class="box">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Help Center</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Safety</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Terms &amp; Conditions</button></li>
+                    <li><button onclick="navigate('error.html')" class="nav-link-btn">Finance</button></li>
+                </ul>
+            </div>
+            <div class="box">
+                <h4>Contact</h4>
+                <ul class="contactInfo">
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 1:</strong> Downtown</li>
+                    <li><i class="fa-solid fa-building"></i><strong> Branch 2:</strong> Beverly Hills</li>
+                    <li><i class="fa-solid fa-phone"></i> +1 800 555 0199</li>
+                    <li><i class="fa-solid fa-envelope"></i> vip@stackly.auto</li>
+                </ul>
+            </div>
+            <div class="box">
+                <h4>Newsletter</h4>
+                <form id="footer-newsletter-form" name="newsletterForm" class="subscribe-form" novalidate>
+                    <label for="newsletter-email" class="sr-only">Your Email Address</label>
+                    <input type="email" id="newsletter-email" name="email" placeholder="Your Email" autocomplete="email" required>
+                    <span id="newsletter-error" style="color: var(--error-color); font-size: 0.8rem; display: block; min-height: 15px;"></span>
+                    <button type="submit" class="btn btn-glow btn-shine full-width">Subscribe</button>
+                </form>
+                <div class="media">
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                    <button onclick="navigate('error.html')" class="socialLink" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sub-footer">
+        <div class="container sub-footer-content">
+            <p>&copy; 2026 Stackly. All rights reserved.</p>
+            <div class="mini-app-links">
+                <button onclick="navigate('error.html')" class="mini-btn"><i class="fa-brands fa-google-play"></i> PlayStore</button>
+                <button onclick="navigate('error.html')" class="mini-btn"><i class="fa-brands fa-apple"></i> AppStore</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Up -->
+    <button id="scroll-up-btn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+
+    <!-- Javascript functionality -->
+    <script>
+        // --- Setup Window & Loader ---
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 400);
+        });
+        window.addEventListener('pageshow', (e) => {
+            if (e.persisted) {
+                const loader = document.getElementById('page-loader');
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 100);
+            }
+        });
+
+        // --- Live clock in top bar ---
+        function updateTime() {
+            const el = document.getElementById('live-time');
+            if (el) el.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // --- Hamburger & Mobile Nav ---
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeBtnEl = document.getElementById('close-btn');
+        const navLinksEl = document.getElementById('nav-links');
+        const menuOverlayEl = document.getElementById('menu-overlay');
+
+        function closeMenu() {
+            navLinksEl.classList.remove('showMenu');
+            menuOverlayEl.style.display = 'none';
+            document.body.classList.remove('menu-open');
+        }
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinksEl.classList.add('showMenu');
+            menuOverlayEl.style.display = 'block';
+            document.body.classList.add('menu-open');
+        });
+        closeBtnEl.addEventListener('click', closeMenu);
+
+        // Close menu if clicked outside the nav menu block (even if not exactly on overlay)
+        document.addEventListener('click', (e) => {
+            if (navLinksEl.classList.contains('showMenu') && !navLinksEl.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Sub-dropdown toggle
+        const dropdownHdr = document.querySelector('.dropdownHeader');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const dropdownIcon = document.querySelector('.dropdownToggle i');
+        if (dropdownHdr) {
+            dropdownHdr.addEventListener('click', (e) => {
+                e.preventDefault(); e.stopPropagation();
+                dropdownMenu.classList.toggle('showDropdown');
+                if (dropdownMenu.classList.contains('showDropdown')) {
+                    dropdownIcon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                } else {
+                    dropdownIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                }
+            });
+        }
+
+        // --- Sticky Header & Scroll Up ---
+        const mainHeader = document.getElementById('main-header');
+        const scrollBtn = document.getElementById('scroll-up-btn');
+        window.addEventListener('scroll', () => {
+            mainHeader.classList.toggle('sticky', window.scrollY > 40);
+            scrollBtn.classList.toggle('show', window.scrollY > 300);
+        });
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // --- Theme Toggle ---
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        const themeText = document.getElementById('theme-text');
+        
+        function updateThemeUI(isLight) {
+            themeText.innerText = isLight ? 'Dark Mode' : 'Light Mode';
+        }
+        
+        // Initial setup
+        if (document.body.classList.contains('light-theme')) {
+            updateThemeUI(true);
+        }
+
+        themeBtn.addEventListener('click', () => {
+            const isLight = document.body.classList.toggle('light-theme');
+            updateThemeUI(isLight);
+            localStorage.setItem('stackly-theme', isLight ? 'light' : 'dark');
+        });
+
+        // --- Hero Carousel ---
+        const track = document.getElementById('h2-s1-track');
+        const slides = document.querySelectorAll('.h2-s1-slide');
+        const dots = document.querySelectorAll('.h2-s1-dots .h2-dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function goToSlide(n) {
+            currentSlide = (n + slides.length) % slides.length;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function startSlideshow() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 6000); // 6 sec per slide
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.getAttribute('data-slide')));
+                startSlideshow();
+            });
+        });
+        
+        if (slides.length > 0) {
+            startSlideshow();
+        }
+
+        // --- Uber Reserve Validation ---
+        const resDateInput = document.getElementById('reserve-date');
+        const resTimeInput = document.getElementById('reserve-time');
+        const resBtn = document.getElementById('reserve-btn');
+        const resError = document.getElementById('reserve-error');
+
+        // UX: Clicking anywhere in input opens the picker
+        if (resDateInput) {
+            resDateInput.addEventListener('click', () => {
+                if (typeof resDateInput.showPicker === 'function') resDateInput.showPicker();
+            });
+        }
+        if (resTimeInput) {
+            resTimeInput.addEventListener('click', () => {
+                if (typeof resTimeInput.showPicker === 'function') resTimeInput.showPicker();
+            });
+        }
+
+        function validateReserveDateTime() {
+            if (!resDateInput.value || !resTimeInput.value) {
+                resBtn.classList.add('disabled');
+                resBtn.disabled = true;
+                resBtn.onclick = null;
+                resError.innerText = '';
+                return;
+            }
+
+            const selectedDateTime = new Date(`${resDateInput.value}T${resTimeInput.value}`);
+            const now = new Date();
+
+            if (selectedDateTime > now) {
+                // Valid future date
+                resBtn.classList.remove('disabled');
+                resBtn.disabled = false;
+                resError.innerText = '';
+                resBtn.onclick = () => navigate('error.html');
+            } else {
+                // Invalid past/present date
+                resBtn.classList.add('disabled');
+                resBtn.disabled = true;
+                resBtn.onclick = null;
+                resError.innerText = 'Please select a future date and time.';
+            }
+        }
+
+        // Set min date to today
+        const todayStr = new Date().toISOString().split('T')[0];
+        resDateInput.setAttribute('min', todayStr);
+
+        resDateInput.addEventListener('change', validateReserveDateTime);
+        resTimeInput.addEventListener('change', validateReserveDateTime);
+
+
+        // --- Intersection Observer (Fade & Count) ---
+        let countStarted = false;
+        const observerOptions = { threshold: 0.15 };
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Trigger number counters on Social metrics container
+                    if (entry.target.classList.contains('h2-s3-metrics') && !countStarted) {
+                        countStarted = true;
+                        startNumberCount();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+        
+        function startNumberCount() {
+            const counters = document.querySelectorAll('.count-num');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                // Determine speed based on target size
+                let increment = Math.ceil(target / 60); 
+                
+                const updateCount = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        counter.innerText = target;
+                        clearInterval(updateCount);
+                    } else {
+                        counter.innerText = count;
+                    }
+                }, 30);
+            });
+        }
+
+        // --- Replace Newsletter ---
+        const footerForm = document.getElementById('footer-newsletter-form');
+        const nlEmail = document.getElementById('newsletter-email');
+        const nlError = document.getElementById('newsletter-error');
+        if (footerForm) {
+            footerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                nlError.innerText = '';
+                if (!nlEmail.value.trim() || !/\S+@\S+\.\S+/.test(nlEmail.value)) {
+                    nlError.innerText = 'Valid email is required';
+                    nlEmail.style.borderColor = 'var(--error-color)';
+                } else {
+                    navigate('error.html');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

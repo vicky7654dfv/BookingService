@@ -1,0 +1,812 @@
+/* =========================================
+   Stackly - Home 2 Styles
+   ========================================= */
+
+/* ───────────────────────────────────────────
+   1. Variables & Global/Utility
+─────────────────────────────────────────── */
+:root {
+    --h2-topbar: 40px;
+    --h2-header: 80px;
+    --h2-offset: calc(var(--h2-topbar) + var(--h2-header)); /* 120px total */
+    --h2-accent: #06B6D4;
+    
+    /* Default Dark Mode Colors */
+    --h2-bg-main: #050505;
+    --h2-bg-alt: #0a0a0a;
+    --h2-card-bg: #111111;
+    --h2-text-main: #ffffff;
+    --h2-text-muted: #94a3b8;
+    --h2-border: rgba(255, 255, 255, 0.08);
+    --h2-video-overlay: rgba(0, 0, 0, 0.75);
+
+    --h2-trans-fast: all 0.3s ease;
+    --h2-trans-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Light Mode Overrides (Applies to Sections 2, 3, 4, 5) */
+body.light-theme {
+    --h2-bg-main: #f8fafc;
+    --h2-bg-alt: #ffffff;
+    --h2-card-bg: #ffffff;
+    --h2-text-main: #0f172a;
+    --h2-text-muted: #475569;
+    --h2-border: rgba(0, 0, 0, 0.1);
+    --h2-video-overlay: rgba(255, 255, 255, 0.85); /* Light frost for video section */
+}
+
+/* Prevent any section from causing horizontal scroll */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Base Classes */
+.h2-section-head {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    padding: 0 16px;
+}
+.h2-section-head h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--h2-text-main);
+    margin-bottom: 20px;
+    line-height: 1.15;
+}
+body.light-theme .h2-section-head h1 { color: var(--h2-text-main); }
+
+.h2-section-head p {
+    font-size: 1.1rem;
+    color: var(--h2-text-muted);
+    line-height: 1.8;
+}
+
+/* Fade animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ───────────────────────────────────────────
+   2. SECTION 1: HERO
+   (Hero always remains Dark Theme)
+─────────────────────────────────────────── */
+.h2-s1-hero {
+    position: relative;
+    /* Height calculation to handle header */
+    height: calc(100vh - var(--h2-offset));
+    min-height: 600px;
+    width: 100%;
+    margin-top: var(--h2-offset); /* Push below absolute header */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000; /* Always dark fallback */
+}
+
+.h2-s1-video-bg {
+    position: fixed; /* Explicit fixed background requirement */
+    top: var(--h2-offset);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--h2-offset));
+    z-index: 0;
+}
+.h2-s1-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.h2-s1-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%);
+}
+
+.h2-s1-carousel-container {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h2-s1-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.h2-s1-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    color: #fff; /* Always white text in Hero */
+}
+
+.h2-s1-slide h1 {
+    font-size: 5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+.h2-s1-slide h3 {
+    font-size: 1.8rem;
+    color: var(--h2-accent);
+    margin-bottom: 24px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+.h2-s1-slide p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    color: rgba(255,255,255,0.8);
+}
+
+.h2-btn-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* Dots */
+.h2-s1-dots {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+}
+.h2-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    cursor: pointer;
+    transition: var(--h2-trans-smooth);
+    padding: 0;
+}
+.h2-dot.active {
+    width: 32px;
+    border-radius: 6px;
+    background: var(--h2-accent);
+    box-shadow: 0 0 10px rgba(6,182,212,0.5);
+}
+
+/* ── HERO ALWAYS DARK — Force override regardless of .light-theme ── */
+body.light-theme .h2-s1-hero,
+body.light-theme .h2-s1-hero * {
+    color-scheme: dark;
+}
+body.light-theme .h2-s1-slide,
+body.light-theme .h2-s1-slide h1,
+body.light-theme .h2-s1-slide p {
+    color: #fff;
+}
+body.light-theme .h2-s1-slide h3 {
+    color: var(--h2-accent);
+}
+body.light-theme .h2-s1-slide p {
+    color: rgba(255,255,255,0.80);
+}
+body.light-theme .h2-dot {
+    background: rgba(255,255,255,0.30);
+}
+body.light-theme .h2-dot.active {
+    background: var(--h2-accent);
+}
+/* Ensure btn-outline in hero is white-bordered, not light-theme dark bordered */
+body.light-theme .h2-s1-hero .btn-outline {
+    border-color: rgba(255,255,255,0.85);
+    color: #fff;
+}
+body.light-theme .h2-s1-hero .btn-outline:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: #fff;
+}
+
+
+/* ───────────────────────────────────────────
+   3. SECTION 2: DIAGONAL TEXTS
+─────────────────────────────────────────── */
+.h2-s2-diagonal {
+    padding: 120px 0;
+    background: var(--h2-bg-main);
+    overflow: hidden;     /* Clips the 160%-wide marquee lines */
+    transition: background 0.3s;
+}
+
+.h2-s2-cross-container {
+    position: relative;
+    height: 380px;
+    margin-top: 40px;
+}
+
+.h2-diag-line {
+    position: absolute;
+    width: 160%;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Main diagonal (Top-Left to Bottom-Right) */
+.h2-main-diag {
+    transform: translate(-50%, -50%) rotate(-8deg);
+    background: var(--h2-accent);
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(6,182,212,0.3);
+}
+/* Second diagonal (Top-Right to Bottom-Left) */
+.h2-sub-diag {
+    transform: translate(-50%, -50%) rotate(8deg);
+    background: var(--h2-card-bg);
+    border-top: 2px solid var(--h2-accent);
+    border-bottom: 2px solid var(--h2-accent);
+    z-index: 1;
+}
+body.light-theme .h2-sub-diag {
+    border-color: var(--h2-text-main);
+}
+
+.h2-marquee {
+    display: flex;
+    width: max-content;
+}
+.h2-marquee span {
+    font-size: 2.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+.h2-main-diag span { color: #fff; }
+.h2-sub-diag span { color: var(--h2-accent); }
+body.light-theme .h2-sub-diag span { color: var(--h2-text-main); }
+
+.scroll-ltr { animation: scrollRight 20s linear infinite; }
+.scroll-rtl { animation: scrollLeft  20s linear infinite; }
+
+@keyframes scrollRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+@keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+
+/* ───────────────────────────────────────────
+   4. SECTION 3: SOCIAL MEDIA (Fixed Video)
+─────────────────────────────────────────── */
+.h2-s3-social {
+    position: relative;
+    padding: 140px 0;
+    background: var(--h2-bg-alt); /* fallback */
+    overflow: hidden; 
+}
+.h2-s3-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+.h2-s3-video-bg video {
+    top: 0;
+    left: 0;
+    position: fixed; /* Fixed background */
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+.h2-s3-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--h2-video-overlay);
+    transition: background 0.3s;
+}
+
+.h2-s3-content {
+    position: relative;
+    z-index: 5;
+}
+
+/* Glassmorphism Box Redesign */
+.h2-s3-box {
+    background: rgba(10,10,10,0.75);
+    border: 1px solid var(--h2-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    transition: var(--h2-trans-smooth);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+body.light-theme .h2-s3-box {
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+}
+
+.h2-s3-box h1 {
+    font-size: 3rem;
+    color: var(--h2-text-main);
+    margin-bottom: 12px;
+}
+.h2-s3-box h3 {
+    font-size: 1.4rem;
+    color: var(--h2-accent);
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.h2-colored-p1 { color: var(--h2-text-main); font-weight: 500; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.7;}
+.h2-colored-p2 { color: var(--h2-text-muted); font-size: 1.05rem; margin-bottom: 40px; line-height: 1.7;}
+
+.h2-s3-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: rgba(128,128,128,0.05);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid var(--h2-border);
+}
+
+.h2-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.h2-metric i {
+    font-size: 2rem;
+    color: var(--h2-accent);
+    margin-bottom: 16px;
+}
+.h2-metric .count-num {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--h2-text-main);
+    line-height: 1;
+}
+.h2-metric small {
+    color: var(--h2-text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+}
+
+
+/* ───────────────────────────────────────────
+   5. SECTION 4: RESERVE
+─────────────────────────────────────────── */
+.h2-s4-reserve {
+    padding: 130px 0;
+    background: var(--h2-bg-main);
+    transition: background 0.3s;
+}
+
+.h2-s4-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.h2-s4-form-col h2 {
+    font-size: 3rem;
+    color: var(--h2-text-main);
+    margin-bottom: 10px;
+}
+.h2-s4-form-col h3 {
+    font-size: 1.3rem;
+    color: var(--h2-text-muted);
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+/* Reset <fieldset> browser defaults for the reserve widget */
+fieldset.h2-reserve-widget {
+    border: 1px solid var(--h2-border);
+    min-inline-size: unset;
+}
+
+.h2-reserve-widget {
+    background: var(--h2-card-bg);
+    border: 1px solid var(--h2-border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.h2-widget-label {
+    display: block;
+    color: var(--h2-text-main);
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.h2-input-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+.h2-input-group { flex: 1; }
+.h2-input-group small {
+    display: block;
+    color: var(--h2-text-muted);
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+.h2-form-control {
+    width: 100%;
+    background: var(--h2-bg-main);
+    border: 1px solid var(--h2-border);
+    color: var(--h2-text-main);
+    padding: 14px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    color-scheme: dark; /* tells browser to render native widgets in dark style */
+    transition: var(--h2-trans-fast);
+}
+body.light-theme .h2-form-control {
+    color-scheme: light;
+}
+.h2-form-control:focus { outline: none; border-color: var(--h2-accent); }
+
+/* Make browser date/time picker icons visible in dark mode 
+   Increased specificity and !important to override global style.css blowouts */
+input[type="date"].h2-form-control::-webkit-calendar-picker-indicator,
+input[type="time"].h2-form-control::-webkit-calendar-picker-indicator,
+input[type="time"].h2-form-control::-webkit-time-picker-indicator,
+.h2-form-control::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(2) !important;
+    opacity: 1 !important;
+    cursor: pointer;
+    display: block !important;
+}
+
+body.light-theme input[type="date"].h2-form-control::-webkit-calendar-picker-indicator,
+body.light-theme input[type="time"].h2-form-control::-webkit-calendar-picker-indicator,
+body.light-theme .h2-form-control::-webkit-calendar-picker-indicator {
+    filter: invert(0) brightness(1) !important;
+    opacity: 0.7 !important;
+}
+
+.h2-validation-msg {
+    display: block;
+    color: #ef4444;
+    font-size: 0.85rem;
+    min-height: 20px;
+    margin-bottom: 10px;
+}
+
+/* Disabled button state */
+button.disabled, button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: #333 !important;
+    color: #888 !important;
+    box-shadow: none !important;
+}
+
+/* Benefits list */
+.h2-benefits-section h4 {
+    color: var(--h2-text-main);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+.h2-benefits-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+}
+.h2-benefits-section li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    color: var(--h2-text-muted);
+    margin-bottom: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.h2-benefits-section li i {
+    color: var(--h2-accent);
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+.h2-text-link {
+    background: none;
+    border: none;
+    color: var(--h2-text-main);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--h2-trans-fast);
+}
+.h2-text-link:hover { color: var(--h2-accent); gap: 12px; }
+
+/* Image Side with unhover/hover fx */
+.h2-s4-img-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--h2-border);
+    transition: var(--h2-trans-smooth);
+}
+.h2-s4-img-wrap img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    transition: var(--h2-trans-smooth);
+    display: block;
+    /* Unhover effect: slightly grayscale and scaled down */
+    filter: grayscale(40%);
+    transform: scale(1);
+}
+.h2-s4-img-wrap:hover {
+    box-shadow: 0 30px 60px rgba(6,182,212,0.15);
+    border-color: rgba(6,182,212,0.4);
+}
+.h2-s4-img-wrap:hover img {
+    /* Hover effect: Full color, slight zoom inwards */
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+
+/* ───────────────────────────────────────────
+   6. SECTION 5: BUSINESS SOLUTIONS
+─────────────────────────────────────────── */
+.h2-s5-business {
+    padding: 130px 0;
+    background: var(--h2-bg-alt);
+    transition: background 0.3s;
+}
+
+.h2-s5-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Stacked images */
+.h2-stacked-images {
+    position: relative;
+    height: 550px;
+}
+.h2-stack-1 {
+    position: absolute;
+    width: 75%;
+    height: 400px;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 16px;
+    border: 2px solid var(--h2-border);
+    transition: var(--h2-trans-smooth);
+    filter: grayscale(20%);
+}
+.h2-stack-2 {
+    position: absolute;
+    width: 70%;
+    height: 350px;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    border-radius: 16px;
+    border: 2px solid var(--h2-border);
+    opacity: 0.8;
+    transition: var(--h2-trans-smooth);
+}
+
+.h2-stacked-images:hover .h2-stack-1 {
+    transform: translate(20px, 20px);
+    opacity: 0.8;
+    z-index: 1;
+    filter: grayscale(0%);
+}
+.h2-stacked-images:hover .h2-stack-2 {
+    transform: translate(-30px, -30px) scale(1.05);
+    opacity: 1;
+    z-index: 2;
+    border-color: var(--h2-accent);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+
+/* Business List */
+.h2-s5-text-col h2 {
+    font-size: 2.8rem;
+    color: var(--h2-text-main);
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+.h2-s5-text-col p {
+    color: var(--h2-text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.h2-business-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.h2-business-list li {
+    background: var(--h2-card-bg);
+    border: 1px solid var(--h2-border);
+    padding: 24px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--h2-text-main);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--h2-trans-smooth);
+}
+.h2-business-list li i {
+    color: var(--h2-accent);
+    font-size: 1.5rem;
+    transition: var(--h2-trans-smooth);
+}
+.h2-business-list li:hover {
+    transform: translateY(-5px);
+    border-color: rgba(6,182,212,0.4);
+    box-shadow: 0 10px 30px rgba(6,182,212,0.1);
+}
+.h2-business-list li:hover i {
+    transform: scale(1.2);
+}
+
+
+/* ───────────────────────────────────────────
+   7. MEDIA QUERIES (Base -> 1024 -> 768 -> 425.6 -> 375.2)
+─────────────────────────────────────────── */
+
+/* --- 1024px --- */
+@media (max-width: 1024px) {
+    .h2-s1-slide h1 { font-size: 4rem; }
+    .h2-s1-slide h3 { font-size: 1.5rem; }
+    
+    .h2-section-head h1 { font-size: 2.8rem; }
+    
+    .h2-diag-line { height: 75px; }
+    .h2-marquee span { font-size: 2rem; }
+    
+    .h2-s3-box { padding: 40px; max-width: 100%; grid-template-columns: 1fr; gap: 40px; }
+    .h2-s3-box h1 { font-size: 2.6rem; }
+    
+    .h2-s4-grid, .h2-s5-grid { gap: 40px; }
+    
+    .h2-s4-form-col h2 { font-size: 2.4rem; }
+    .h2-s4-img-wrap img { height: 500px; }
+    
+    .h2-s5-text-col h2 { font-size: 2.2rem; }
+    .h2-stacked-images { height: 450px; }
+    .h2-stack-1 { height: 320px; }
+    .h2-stack-2 { height: 280px; }
+}
+
+/* --- 768px --- */
+@media (max-width: 768px) {
+    .h2-s1-slide h1 { font-size: 3rem; }
+    .h2-s1-slide p { font-size: 1rem; margin-bottom: 30px; }
+    .h2-s1-hero { min-height: 500px; }
+    
+    .h2-section-head h1 { font-size: 2.2rem; }
+    .h2-section-head p { font-size: 1rem; }
+    
+    .h2-s2-diagonal { padding: 80px 0; }
+    .h2-s2-cross-container { height: 280px; }
+    .h2-diag-line { height: 60px; }
+    .h2-marquee span { font-size: 1.5rem; }
+    
+    .h2-s3-social { padding: 90px 0; }
+    .h2-s3-box h1 { font-size: 2.2rem; }
+    .h2-s3-box h3 { font-size: 1.2rem; }
+    .h2-colored-p1, .h2-colored-p2 { font-size: 0.95rem; }
+    
+    .h2-s4-reserve { padding: 90px 0; }
+    .h2-s4-grid { grid-template-columns: 1fr; gap: 60px; }
+    .h2-s4-img-wrap img { height: 400px; }
+    
+    .h2-s5-business { padding: 90px 0; }
+    .h2-s5-grid { grid-template-columns: 1fr; gap: 60px; }
+    .h2-business-list { grid-template-columns: 1fr; }
+    .h2-stacked-images { height: 400px; max-width: 600px; margin: 0 auto; }
+}
+
+/* --- 425.6px --- */
+@media (max-width: 425.6px) {
+    .h2-s1-slide h1 { font-size: 1.5rem; letter-spacing: 0; }
+    .h2-s1-slide h3 { font-size: 1rem; }
+    .h2-s1-slide p { font-size: 0.9rem; max-width: 300px;}
+    .h2-btn-group { flex-direction: column; width: 100%; align-items: center; }
+    .h2-btn-group .btn { width: 100%; max-width: 300px; }
+    
+    .h2-section-head h1 { font-size: 1.8rem; }
+    .h2-section-head p { font-size: 0.9rem; margin-bottom: 0; }
+    
+    .h2-s2-cross-container { height: 240px; }
+    .h2-diag-line { height: 50px; }
+    .h2-marquee span { font-size: 1.2rem; }
+    
+    .h2-s3-box { padding: 30px 20px; }
+    .h2-s3-box h1 { font-size: 1.8rem; }
+    .h2-metric .count-num { font-size: 2.2rem; }
+    
+    .h2-reserve-widget { padding: 20px; }
+    .h2-input-row { flex-direction: column; }
+    .h2-s4-form-col h2 { font-size: 2rem; }
+    .h2-s4-img-wrap img { height: 320px; }
+    
+    .h2-s5-text-col h2 { font-size: 1.8rem; }
+    .h2-stacked-images { height: 320px; }
+    .h2-stack-1 { height: 240px; width: 85%; }
+    .h2-stack-2 { height: 200px; width: 80%; }
+}
+
+/* --- 375.2px --- */
+@media (max-width: 375.2px) {
+    .h2-s1-slide h1 { font-size: 1.5rem; }
+    .h2-s1-slide h3 { font-size: 1rem; }
+    
+    .h2-section-head h1 { font-size: 1.6rem; }
+    
+    .h2-s2-cross-container { height: 200px; }
+    .h2-diag-line { height: 45px; }
+    .h2-marquee span { font-size: 1.1rem; }
+    
+    .h2-s3-box h1 { font-size: 1.6rem; }
+    .h2-metric .count-num { font-size: 2rem; }
+    
+    .h2-s4-form-col h2 { font-size: 1.8rem; }
+    .h2-s4-img-wrap img { height: 280px; }
+    
+    .h2-s5-text-col h2 { font-size: 1.6rem; }
+    .h2-stacked-images { height: 280px; }
+    .h2-stack-1 { height: 200px; width: 90%; }
+    .h2-stack-2 { height: 160px; width: 85%; }
+}
