@@ -92,18 +92,24 @@ body.light-theme .h2-section-head h1 { color: var(--h2-text-main); }
     background: #000; /* Always dark fallback */
 }
 
+/* * CRITICAL BUG FIX: 
+ * Replaced position: fixed; with position: absolute;
+ * This resolves the severe "open and close" glitch on scroll 
+ * that happens when Intersection Observers apply transforms while fixed elements exist.
+ */
 .h2-s1-video-bg {
-    position: fixed; /* Explicit fixed background requirement */
-    top: var(--h2-offset);
+    position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - var(--h2-offset));
+    height: 100%;
     z-index: 0;
 }
 .h2-s1-video-bg video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 .h2-s1-overlay {
     position: absolute;
@@ -229,7 +235,7 @@ body.light-theme .h2-s1-hero .btn-outline:hover {
 .h2-s2-diagonal {
     padding: 120px 0;
     background: var(--h2-bg-main);
-    overflow: hidden;     /* Clips the 160%-wide marquee lines */
+    overflow: hidden;    /* Clips the 160%-wide marquee lines */
     transition: background 0.3s;
 }
 
@@ -297,7 +303,7 @@ body.light-theme .h2-sub-diag span { color: var(--h2-text-main); }
 
 
 /* ───────────────────────────────────────────
-   4. SECTION 3: SOCIAL MEDIA (Fixed Video)
+   4. SECTION 3: SOCIAL MEDIA
 ─────────────────────────────────────────── */
 .h2-s3-social {
     position: relative;
@@ -310,13 +316,19 @@ body.light-theme .h2-sub-diag span { color: var(--h2-text-main); }
     inset: 0;
     z-index: 0;
 }
+
+/* * CRITICAL BUG FIX: 
+ * Replaced position: fixed; with position: absolute;
+ * This prevents background sections from colliding on scroll.
+ */
 .h2-s3-video-bg video {
+    position: absolute;
     top: 0;
     left: 0;
-    position: fixed; /* Fixed background */
     width: 100%;
-    height: 100vh;
+    height: 100%;
     object-fit: cover;
+    display: block;
 }
 .h2-s3-overlay {
     position: absolute;
